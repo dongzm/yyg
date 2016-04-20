@@ -1,0 +1,58 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-records.css"/>
+<div class="R-content">
+	<div class="member-t"><h2>{wc:fun:_cfg('web_name_two')}记录</h2></div>
+	<div id="GoodsList" class="goods_show">
+		<ul class="gtitle">
+			<li>商品图片</li>
+			<li class="gname">商品名称</li>
+			<li class="yg_status">{wc:fun:_cfg('web_name_two')}状态</li>
+			<li class="joinInfo">参与人次</li>
+			<li class="do">操作</li>
+		</ul>	
+		{wc:loop $record $rt}
+        {wc:php:start}
+        	$jiexiao = get_shop_if_jiexiao($rt['shopid']);
+        {wc:php:end}
+		{wc:if $jiexiao['q_uid']}
+		<ul class="goods_list">	
+			<li><a title="" target="_blank" class="pic" href="{WEB_PATH}/dataserver/{wc:$rt['shopid']}_{wc:$rt['shopqishu']}"><img src="{G_UPLOAD_PATH}/{wc:$jiexiao['thumb']}"></a></li>
+			<li class="gname"style="margin:10px 0 0 0;">
+				<a target="_blank" href="{WEB_PATH}/dataserver/{wc:$rt['shopid']}_{wc:$rt['shopqishu']}" class="blue">第({wc:$rt['shopqishu']})期 {wc:$rt['shopname']}</a>
+				<p class="gray02">获得者：<a href="{WEB_PATH}/uname/{wc:fun:idjia($jiexiao['q_uid'])}" target="_blank" class="blue">
+                {wc:fun:get_user_name($jiexiao['q_user'])}
+                </a></p>
+				<p class="gray02">揭晓时间：{wc:fun:date("Y-m-d H:i:s",$jiexiao['q_end_time'])}</p>
+			</li>
+			<li class="yg_status" style="margin:23px 0 0 0;"><span class="orange">已揭晓</span></li>
+			<li class="joinInfo" style="margin:23px 0 0 0;"><p><em>{wc:$rt['gonumber']}</em>人次</p></li>
+			<li class="do" style="margin:23px 0 0 0;"><a href="{WEB_PATH}/member/home/userbuydetail/{wc:$rt['id']}" class="blue" title="详情">详情</a></li>
+		</ul>
+		{wc:else}
+		<ul class="goods_list">	
+			<li><a title="" target="_blank" class="pic" href="{WEB_PATH}/goods/{wc:$rt['shopid']}"><img src="{G_UPLOAD_PATH}/{wc:fun:yunjl($rt['shopid'])}"></a></li>
+			<li class="gname" style="margin:15px 0 0 0;">
+				<a target="_blank" href="{WEB_PATH}/goods/{wc:$rt['shopid']}" class="blue">第({wc:$rt['shopqishu']})期 {wc:$rt['shopname']}</a>				
+				<p class="gray02">购买时间：{wc:fun:microt($rt['time'])}</p>
+			</li>
+			<li class="yg_status" style="margin:23px 0 0 0;"><span class="orange">正在进行...</span></li>
+			<li class="joinInfo" style="margin:23px 0 0 0;"><p><em>{wc:$rt['gonumber']}</em>人次</p></li>
+			<li class="do" style="margin:23px 0 0 0;"><a href="{WEB_PATH}/member/home/userbuydetail/{wc:$rt['id']}" class="blue" title="查看幸运码">查看{wc:fun:_cfg('web_name_two')}码</a></li>
+		</ul>
+		{wc:if:end}
+		{wc:loop:end}	
+        
+        <style>
+			#divPageNav{ padding-top:10px;text-align:right}
+			#divPageNav li a{ padding:5px;}
+		</style>
+		<div id="divPageNav" class="page_nav">
+        	{wc:page:one} <li>共 {wc:$total} 条</li>
+        </div>
+	</div>
+</div>
+
+</div>
+{wc:templates "index","footer"}

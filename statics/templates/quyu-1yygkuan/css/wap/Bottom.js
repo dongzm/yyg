@@ -1,0 +1,1 @@
+Base.getScript("/statics/templates/quyu-1yygkuan/css/wap/BottomFun.js");

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>{wc:if isset($title)}{wc:$title}{wc:else}{wc:fun:_cfg("web_name")}{wc:if:end}</title>
+<meta name="keywords" content="{wc:if isset($keywords)}{wc:$keywords}{wc:else}{wc:fun:_cfg("web_key")}{wc:if:end}" />
+<meta name="description" content="{wc:if isset($description)}{wc:$description}{wc:else}{wc:fun:_cfg("web_des")}{wc:if:end}" />
+   
+   <link rel="stylesheet" type="text/css" href="{G_TEMPLATES_CSS}/Comm1.css?date=20140731" />
+ 
+    <link rel="stylesheet" type="text/css" href="{G_WEB_PATH}/app/css/layout.css?date=20141013" />
+    <script language="javascript" type="text/javascript" src="{G_WEB_PATH}/app/js/JQuery132.js"></script>
+</head>
+<body>
+    <div class="tContent">
+        <div class="tMain">
+            <div class="tHead">
+                <ul>
+                    <li class="tLogo"><a href="{WEB_PATH}" class="tHome"><img src="{G_UPLOAD_PATH}/logo2.png" /></a><img src="app/images/android/line.gif" class="line" /><a href="" title="安卓手机版" class="txt">安卓手机版</a></li>
+                    <li class="tNav">
+                        <a href="{WEB_PATH}" title="网站首页" class="tReturn">{wc:fun:_cfg('web_name_two')}
+首页</a>
+                      <a href="{G_WEB_PATH}/?/go/index/android" title="安卓手机版" class="current" >安卓手机版</a>    
+                        <a href="{G_WEB_PATH}/?/go/index/iphone" title="苹果触屏版" >苹果触屏版</a>    
+                         <a href="{G_WEB_PATH}/?/go/index/weixin" title="官方QQ" >官方QQ</a>                       
+                </ul>
+            </div>            
+        </div>
+        <div class="anBanner">
+            <div class="anMain">
+                <img src="app/images/android/img_03.jpg" />
+                <img src="app/images/android/img_05.jpg" />
+                <div class="anDown"><a href="http://app.1yyg.com/down1yygapk.do" title="Android客户端下载"></a><p>安卓V1.7&nbsp;&nbsp;3.05MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适用于安卓1.6以上平台</p></div>
+            </div>
+        </div>
+        <div class="anMain">
+             <img src="app/images/android/img_07.jpg" />
+            <img src="app/images/android/img_10.jpg" />
+            <img src="app/images/android/img_11.jpg" />
+            <img src="app/images/android/img_12.jpg" />
+            <img src="app/images/android/img_14.jpg" />
+            <img src="app/images/android/img_15.jpg" />
+            <img src="app/images/android/img_16.jpg" />
+            <img src="app/images/android/img_17.jpg" />
+            <img src="app/images/android/img_18.jpg" />
+            <img src="app/images/android/img_19.jpg" />
+            <img src="app/images/android/img_20.jpg" />
+            <img src="app/images/android/img_21.jpg" />
+            <img src="app/images/android/img_22.jpg" />
+            <img src="app/images/android/img_23.jpg" />
+            <img src="app/images/android/img_24.jpg" />
+            <img src="app/images/android/img_25.jpg" />
+            <img src="app/images/android/img_26.jpg" />
+          
+            <img src="app/images/android/img_28.jpg" />
+        </div>
+    </div>    
+     {wc:templates "index","footer"}

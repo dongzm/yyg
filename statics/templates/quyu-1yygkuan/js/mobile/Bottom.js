@@ -1,0 +1,1 @@
+Base.getScript(Path.Skin+"/js/mobile/BottomFun.js");

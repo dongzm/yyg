@@ -1,0 +1,285 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-setUp.css"/>
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/area.js"></script>
+<script type="text/javascript">
+$(function(){		
+	var demo=$(".registerform").Validform({
+		tiptype:2,
+		datatype:{
+			"tel":/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/,
+		},
+	});	
+	demo.tipmsg.w["tel"]="请正确输入电话号码(区号、号码必填，用“-”隔开)";
+	demo.addRule([
+	{
+		ele:"#txt_ship_tel",
+		datatype:"tel",
+	}]);
+});
+$(function(){
+	$("#btnAddnewAddr").click(function(){
+		$("#div_consignee").show();
+		$("#btnAddnewAddr").hide();
+	});
+	$("#btn_consignee_cancle").click(function(){
+		$("#div_consignee").hide();
+		$("#btnAddnewAddr").show();
+	});
+});
+$(function(){
+	$(".xiugai").click(function(){
+		$("#btnAddnewAddr").hide();
+		$("#div_consignee").hide();
+	});
+	$("#btn_consignee_cancle2").click(function(){
+		$("#div_consignee2").hide();
+		$("#btnAddnewAddr").show();
+	});
+});
+function update(id){	
+	$("#div_consignee2").show;
+	setup3();
+	$("#registerform3").attr("action","{WEB_PATH}/member/home/updateddress/"+id);
+	var str=$("#dizh_"+id).html();
+	var spl=str.split(",");
+	$("#province3").append('<option selected value="'+spl[0]+'">'+spl[0]+'</option>');
+	$("#city3").append('<option selected value="'+spl[1]+'">'+spl[1]+'</option>');
+	$("#county3").append('<option selected value="'+spl[1]+'">'+spl[1]+'</option>');
+	$("#dizh2").val(spl[3]);
+	$("#mob2").val($("#mob_"+id).html());
+	$("#yb2").val($("#yb_"+id).html());
+	$("#shr2").val($("#shr_"+id).html());
+	$("#div_consignee2").show();	
+};
+function dell(id){
+	if (confirm("您确认要删除该条信息吗？")){
+		window.location.href="{WEB_PATH}/member/home/deladdress/"+id;
+	}
+}
+
+
+</script>
+<div class="R-content">
+	{wc:templates "member","shezhi"}
+	{wc:if $count==0}
+	<div  class="addAddress">
+		<dl>添加收货地址</dl>
+		<form class="registerform" method="post" action="{wc:WEB_PATH}/member/home/useraddress">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>
+			<script>var s=["province","city","county"];</script>
+			<td><label>所在地区：</label></td>
+			<td>
+				<select datatype="*" nullmsg="请选择有效的省市区" class="select" id="province" runat="server" name="sheng"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="city" runat="server" name="shi"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="county" runat="server" name="xian"></select>
+				<em id="ship_address_valid_msg" class="red">*</em> 	
+				<script type="text/javascript">setup()</script>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>街道地址：</label></td>
+			<td>
+				<input datatype="*1-100" nullmsg="请填街道地址！" errormsg="范围在100之间！" name="jiedao" type="text" class="street" maxlength="100" />
+				<em id="ship_address_valid_msg" class="red">*</em> 			
+			</td>
+			<td><div class="Validform_checktip">(不需要重复填写省/市/区)</div></td>
+		</tr>
+		<tr>
+			<td><label>邮政编码：</label></td>
+			<td>
+				<input datatype="p" ignore="ignore" errormsg="邮政编码错误！" name="youbian" type="text" maxlength="6" id="txt_ship_zip" class="inputTxt" value=""> 
+				<font><a href="http://alexa.ip138.com/post/Search.aspx" class="blue" target="_blank">邮编查询</a></font>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>收货人：</label></td>
+			<td>
+				<input datatype="*" nullmsg="收货人不能为空" name="shouhuoren" type="text" maxlength="20" id="txt_ship_name" class="inputTxt" value="">
+				<em class="red" id="ship_name_valid_msg">*</em>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>手机号码：</label></td>
+			<td>
+				<input datatype="m" nullmsg="手机号不能为空" errormsg="手机号不对" name="mobile" type="text" id="txt_ship_mb" value="" class="inputTxt" maxlength="11">
+				<em id="ship_mb_valid_msg" class="red">*</em>
+				<td><div class="Validform_checktip"></div></td>
+			</td>
+		</tr>
+		<tr>
+			<td><label>&nbsp;</label></td>
+			<td>
+				<input style="margin-right:20px;" name="submit" type="submit" class="orangebut" id="btn_consignee_save" value="保存" title="保存"> 
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+	</div>
+	{wc:if:end}
+	{wc:if $count>0}
+	<div id="addressListDiv" class="list-tab detailAddress gray01" style="">
+		<ul class="listTitle tdTitle">
+			<li class="pad">详细地址</li>
+			<li class="wid55">邮政编码</li>
+			<li class="wid70">收货人</li>
+			<li class="wid110">电话号码</li>
+			<li class="wid80">&nbsp;</li>
+			<li class="wid70">操作</li>
+		</ul>					
+		{wc:loop $member_dizhi $v}
+		<ul class="liBg">
+			<li id="dizh_{wc:$v['id']}" class="pad">{wc:$v['sheng']},{wc:$v['shi']},{wc:$v['xian']},{wc:$v['jiedao']}</li>
+			<li id="yb_{wc:$v['id']}" class="wid55">{wc:$v['youbian']}</li>
+			<li id="shr_{wc:$v['id']}" class="wid70">{wc:$v['shouhuoren']}</li>
+			<li id="mob_{wc:$v['id']}" class="wid110">{wc:$v['mobile']}</li>
+			{wc:if $v['default']=='Y'}
+			<li class="wid80 orange">默认地址</li>
+			<li class="wid70"><a class="xiugai" href="javascript:;" id="update{wc:$v['id']}" onclick="update({wc:$v['id']})" title="修改">修改</a></li>
+			{wc:else}
+			<li class="wid80 lightBlue">
+				<a class="blue" href="{WEB_PATH}/member/home/morenaddress/{wc:$v['id']}">设为默认地址</a>
+			</li>
+			<li class="wid70">
+				<a class="xiugai" href="javascript:;"   onclick="update({wc:$v['id']})" title="修改">修改</a>
+				<a onclick="dell({wc:$v['id']})"  href="javascript:;" >删除</a>
+			</li>
+			{wc:if:end}			
+		</ul>
+		{wc:loop:end}
+	</div>
+	<div class="add"><input id="btnAddnewAddr" type="button" class="orangebut" value="新增收货地址" style="display: block;"></div>
+	{wc:if:end}
+	{wc:if $count<=5}	            
+	<div id="div_consignee" class="addAddress" style="display:none;">
+		<dl>添加收货地址</dl>
+		<form class="registerform" method="post" action="{WEB_PATH}/member/home/useraddress">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>
+		<script>var s2=["province2","city2","county2"];</script>
+			<td><label>所在地区：</label></td>
+			<td>
+				<select datatype="*" nullmsg="请选择有效的省市区" class="select" id="province2" runat="server" name="sheng"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="city2" runat="server" name="shi"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="county2" runat="server" name="xian"></select>
+				<em id="ship_address_valid_msg" class="red">*</em> 	
+				<script type="text/javascript">setup2()</script>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>街道地址：</label></td>
+			<td>
+				<input datatype="*1-100" nullmsg="请填街道地址！" errormsg="范围在100之间！" name="jiedao" type="text" class="street" maxlength="100" />
+				<em id="ship_address_valid_msg" class="red">*</em> 			
+			</td>
+			<td><div class="Validform_checktip">(不需要重复填写省/市/区)</div></td>
+		</tr>
+		<tr>
+			<td><label>邮政编码：</label></td>
+			<td>
+				<input datatype="p" ignore="ignore" errormsg="邮政编码错误！" name="youbian" type="text" maxlength="6" id="txt_ship_zip" class="inputTxt" value=""> 
+				<font><a href="http://alexa.ip138.com/post/Search.aspx" class="blue" target="_blank">邮编查询</a></font>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>收货人：</label></td>
+			<td>
+				<input datatype="*" nullmsg="收货人不能为空" name="shouhuoren" type="text" maxlength="20" id="txt_ship_name" class="inputTxt" value="">
+				<em class="red" id="ship_name_valid_msg">*</em>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>手机号码：</label></td>
+			<td>
+				<input datatype="m" nullmsg="手机号不能为空" errormsg="手机号不对" name="mobile" type="text"  class="inputTxt" maxlength="11">
+				<em id="ship_mb_valid_msg" class="red">*</em>
+				<td><div class="Validform_checktip"></div></td>
+			</td>
+		</tr>
+		<tr>
+			<td><label>&nbsp;</label></td>
+			<td>
+				<input style="margin-right:20px;" name="submit" type="submit" class="orangebut" id="btn_consignee_save" value="保存" title="保存"> 
+				<input type="button" class="cancelBtn" value="取消" id="btn_consignee_cancle" title="取消">
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+	</div>
+	{wc:if:end}
+	<div id="div_consignee2" class="addAddress" style="display:none;">
+		<dl>修改收货地址</dl>
+		<script>var s3=["province3","city3","county3"];</script>	
+		 
+		<form id="registerform3" class="registerform" method="post" >
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>		
+			<td><label>所在地区：</label></td>
+			<td>
+				<select datatype="*" nullmsg="请选择有效的省市区" class="select" id="province3" runat="server" name="sheng"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="city3" runat="server" name="shi"></select>
+				<select datatype="*" nullmsg="请选择有效的省市区" id="county3" runat="server" name="xian"></select>
+				<em id="ship_address_valid_msg" class="red">*</em> 				
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>街道地址：</label></td>
+			<td>
+				<input  id="dizh2" datatype="*1-100" nullmsg="请填街道地址！" errormsg="范围在100之间！" name="jiedao" type="text" class="street" maxlength="100" />
+				<em id="ship_address_valid_msg" class="red">*</em> 			
+			</td>
+			<td><div class="Validform_checktip">(不需要重复填写省/市/区)</div></td>
+		</tr>
+		<tr>
+			<td><label>邮政编码：</label></td>
+			<td>
+				<input id="yb2" datatype="p" ignore="ignore" errormsg="邮政编码错误！" name="youbian" type="text" maxlength="6" class="inputTxt" value=""> 
+				<font><a href="http://alexa.ip138.com/post/Search.aspx" class="blue" target="_blank">邮编查询</a></font>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>收货人：</label></td>
+			<td>
+				<input id="shr2" datatype="*" nullmsg="收货人不能为空" name="shouhuoren" type="text" maxlength="20" class="inputTxt" value="">
+				<em class="red" id="ship_name_valid_msg">*</em>
+			</td>
+			<td><div class="Validform_checktip"></div></td>
+		</tr>
+		<tr>
+			<td><label>手机号码：</label></td>
+			<td>
+				<input  id="mob2" datatype="m" nullmsg="手机号不能为空" errormsg="手机号不对" name="mobile" type="text" value="" class="inputTxt" maxlength="11">
+				<em id="ship_mb_valid_msg" class="red">*</em>
+				<td><div class="Validform_checktip"></div></td>
+			</td>
+		</tr>
+		<tr>
+			<td><label>&nbsp;</label></td>
+			<td>
+				<input style="margin-right:20px;" name="submit" type="submit" class="orangebut" id="btn_consignee_save" value="保存" title="保存"> 
+				<input type="button" class="cancelBtn" value="取消" id="btn_consignee_cancle2" title="取消">
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+		 
+	</div>
+</div>
+</div>
+{wc:templates "index","footer"}

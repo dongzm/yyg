@@ -1,0 +1,51 @@
+{wc:templates "index","header"}
+<link href="{G_TEMPLATES_STYLE}/js/style.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="{G_TEMPLATES_STYLE}/js/demo.css">
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.Validform.min.js"></script>
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/passwordStrength-min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var demo=$(".registerform").Validform({
+		tiptype:2,
+		usePlugin:{
+			passwordstrength:{
+				minLen:6,
+				maxLen:20
+			}
+		}
+	});
+})
+</script>
+<style>
+#passqiang{ padding:0 0 0 140px; color:#777;}
+#passqiang span{width:41px;}
+</style>
+<div class="login_layout">
+	<div class="login_title">
+		<h2>设置密码</h2>
+	</div>
+	<div class="login_ConInput login_Ptxtf14">
+	<form class="registerform" method="post" action="{WEB_PATH}/member/finduser/resetpassword">
+
+     <input name="hidKey" type="hidden" id="hidKey" value="{wc:$key_find}">
+		<p class="Ptxt_F14">请重新设置您的登录密码，您的帐号是：<span class="orange Fb">{wc:$checkcode[0]}</span></p>
+		<dl>
+			<dt>密码：</dt>
+			<dd><input name="userpassword" plugin="passwordStrength" datatype="*6-20" nullmsg="密码不能为空！" errormsg="密码范围在6~20位之间！"  type="password" class="login_input_text" maxlength="20"></dd>
+			<dd><div class="Validform_checktip">请输入密码</div></dd>
+		</dl>
+		<dl style="height:35px;">
+			<dd><div id="passqiang" class="passwordStrength"><i style="float:left;">密码强度：</i><span>弱</span><span>中</span><span class="last">强</span></div></dd>
+		</dl>
+		<dl>
+			<dt>确认密码：</dt>
+			<dd><input name="userpassword2" recheck="userpassword" sucmsg=" " datatype="*6-20" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" id="NewPassAgain" type="password" class="login_input_text" maxlength="20"></dd>
+			<dd><div class="Validform_checktip">请再输入一次密码！</div></dd>
+		</dl>
+		<div class="login_Membut">
+			<input type="submit" name="submit" class="login_Email_but" value="确认修改" />
+		</div>
+	</form>
+	</div>
+</div>
+{wc:templates "index","footer"}

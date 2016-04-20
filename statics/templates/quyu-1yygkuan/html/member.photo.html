@@ -1,0 +1,165 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-setUp.css"/>
+<script type="text/javascript">
+//裁剪图片
+function showCoords(obj){
+	$("#x").val(obj.x);$("#y").val(obj.y);$("#w").val(obj.w);$("#h").val(obj.h);
+	if(parseInt(obj.w) > 0){
+		var rx = $("#w160").width() / obj.w; 
+		var ry = $("#w160").height() / obj.h;
+		$("#crop_preview").css({
+			width:Math.round(rx * $("#xuwanting").width()) + "px",	
+			height:Math.round(rx * $("#xuwanting").height()) + "px",	
+			marginLeft:"-" + Math.round(rx * obj.x) + "px",
+			marginTop:"-" + Math.round(ry * obj.y) + "px"
+		});
+		var rx2 = $("#w80").width() / obj.w; 
+		var ry2 = $("#w80").height() / obj.h;
+		$("#crop_preview2").css({
+			width:Math.round(rx2 * $("#xuwanting").width()) + "px",	
+			height:Math.round(rx2 * $("#xuwanting").height()) + "px",	
+			marginLeft:"-" + Math.round(rx2 * obj.x) + "px",
+			marginTop:"-" + Math.round(ry2 * obj.y) + "px"
+		});
+		var rx3 = $("#w30").width() / obj.w; 
+		var ry3 = $("#w30").height() / obj.h;
+		$("#crop_preview3").css({
+			width:Math.round(rx3 * $("#xuwanting").width()) + "px",	
+			height:Math.round(rx3 * $("#xuwanting").height()) + "px",
+			marginLeft:"-" + Math.round(rx3 * obj.x) + "px",
+			marginTop:"-" + Math.round(ry3 * obj.y) + "px"
+		});
+	}
+}
+//上传文件
+$(function(){
+    $('#file_upload').uploadify({
+    	'auto'     : true,
+    	'removeTimeout' : 1,
+		'removeCompleted' :true,
+		'progressData' :'speed',
+        'swf'      : '{G_TEMPLATES_STYLE}/js/uploadify.swf',
+        'uploader' : '{WEB_PATH}/member/home/userphotoup',
+        'method'   : 'post',
+		'buttonText' : '选择图片',
+		'buttonImage': '{G_TEMPLATES_STYLE}/img/upload.gif',
+		'width': 94,
+		'height': 27,
+        'multi'    : true,
+        'uploadLimit' : 5,
+        'fileTypeDesc' : 'Image Files',
+        'fileTypeExts' : '*.jpeg; *.jpg; *.png',
+        'fileSizeLimit' : '20000KB',
+
+		'formData'        : {
+			'typeCode'   : '{wc:fun:time()}',
+			'uid': '{wc:$uid}',			
+			'ushell':'{wc:$ushell}'
+		},
+		'onSelect' :function(){
+			var hide=$("#divImgTip").css("display");
+			if(hide=="none"){
+				$(".pic #xuwanting,.pic .jcrop-holder").remove();
+				$("#divImgTip").show();
+			}
+		},
+		'onUploadSuccess' : function(file,data,response){	
+			data =  data.replace(/^(\s|\xA0)+|(\s|\xA0)+$/g,'');   			
+			$(".photo ul li").remove();
+			$("#divImgTip").hide();
+			$(".pic").append(SetImgContent(data));
+			$(".photo ul").append(SetImgphoto(data));		
+			$("#membimg").val(data);	
+			$("#xuwanting").Jcrop({
+				aspectRatio:1,
+				setSelect:[160,160,0,0],
+				onChange:showCoords,
+				onSelect:showCoords
+			});
+		}
+    });
+});
+//显示上传的图片
+function SetImgContent(data){
+
+	if(data == ''){
+		alert('上传失败！');
+		return;
+	}else{
+		var sLi = "";
+		sLi += '<img  id="xuwanting" src="{G_UPLOAD_PATH}/'+data+'">';
+		return sLi;
+	}
+}
+function SetImgphoto(data){
+	if(data == ''){		
+		return;
+	}else{
+		var sLi160 = "";
+		sLi160 += '<li class="li160"><div class="w160"><div id="w160">';
+		sLi160 += '<img id="crop_preview" src="{G_UPLOAD_PATH}/'+data+'">';
+		sLi160 += '</div></div>160X160 像素</li>';
+		sLi160 += '<li class="li80"><div class="w80"><div id="w80">';
+		sLi160 += '<img id="crop_preview2" src="{G_UPLOAD_PATH}/'+data+'">';
+		sLi160 += '</div></div>80X80 像素</li>';
+		sLi160 += '<li class="li30"><div class="w30"><div id="w30">';
+		sLi160 += '<img id="crop_preview3" src="{G_UPLOAD_PATH}/'+data+'">';
+		sLi160 += '</div></div>30X30 像素</li>';
+		return sLi160;
+	}
+}
+</script>
+
+<style>
+#file_upload{float:left;}
+#file_upload-queue{display:block; margin:30px 0 0 0;}
+</style>
+<div class="R-content">
+	{wc:templates "member","shezhi"}
+	<div id="urlxx"></div>
+	<div class="uploadCon" style="margin-top:20px;">
+		<div class="upLeft">
+            <div class="gray02">支持  png,  jpg,  jpeg 图片上传</div>
+			<div class="upload" style="float:left; width:300px;"><input type="file" name="file_upload"  id="file_upload" multiple="true" /></div>
+			<div class="frameCut">
+				<div class="zhix"></div>
+				<div id="divImgTip" class="text">选择一张本地的图片编辑后上传成为头像</div>
+				<div class="pic">					
+				</div>
+			</div>
+			<span class="tishi gray02">点击图片并拉动以选择需要裁剪的区域</span>
+			<div class="savePhoto">
+				<form action="{wc:WEB_PATH}/member/home/userphotoinsert" method="post" id="crop_form">
+					<input type="hidden" id="x" name="x" />
+					<input type="hidden" id="y" name="y" />
+					<input type="hidden" id="w" name="w" />
+					<input type="hidden" id="h" name="h" />
+					<input type="hidden" id="membimg" name="img" />
+					<input id="crop_submit" type="submit"name="submit" class="bluebut" value="保存头像" title="保存头像"/>
+				</form>
+			</div>
+		</div>
+		<div class="upRight">
+			<p class="gray02">您上传的头像将会自动生成三种尺寸，请注意头像是否清晰：</p>
+			<div class="photo gray02">
+				<ul>
+					{wc:if empty($member['img']) || $member['img'] == "photo/member.jpg"}				
+					<li class="li160"><div class="w160"><div id="w160"><img id="crop_preview" src="{G_UPLOAD_PATH}/photo/member.jpg_160160.jpg" width="160" height="160"  /></div></div>160X160 像素</li>
+					<li class="li80"><div class="w80"><div id="w80"><img id="crop_preview2" src="{G_UPLOAD_PATH}/photo/member.jpg_8080.jpg" width="80" height="80"  /></div></div>80X80 像素</li>
+					<li class="li30"><div class="w30"><div id="w30"><img id="crop_preview3" src="{G_UPLOAD_PATH}/photo/member.jpg_3030.jpg" width="30" height="30"  /></div></div>30X30 像素</li>					
+					{wc:else}			
+					<li class="li160"><div class="w160"><div id="w160"><img id="crop_preview" src="{G_UPLOAD_PATH}/{wc:$member['img']}_160160.{wc:fun:img($member['img'])}" /></div></div>160X160 像素</li>
+					<li class="li80"><div class="w80"><div id="w80"><img id="crop_preview2" src="{G_UPLOAD_PATH}/{wc:$member['img']}_8080.{wc:fun:img($member['img'])}" /></div></div>80X80 像素</li>
+					<li class="li30"><div class="w30"><div id="w30"><img id="crop_preview3" src="{G_UPLOAD_PATH}/{wc:$member['img']}_3030.{wc:fun:img($member['img'])}" /></div></div>30X30 像素</li>					
+					{wc:if:end}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+{wc:templates "index","footer"}

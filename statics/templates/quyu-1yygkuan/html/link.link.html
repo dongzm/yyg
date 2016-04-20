@@ -1,0 +1,25 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/link.css"/>
+<div class="links_txt">
+	<h3><b>文字链接</b></h3>
+	<ul>
+	{wc:loop $link_size $size}	
+		<li><a href="{wc:$size['url']}" target="_blank">{wc:$size['name']}</a></li>
+	{wc:loop:end}	
+	</ul>
+</div>
+<div class="links_txt">
+	<h3><b>图片链接</b></h3>
+	<ul>
+	{wc:loop $link_img $img}	
+		<li><a href="{wc:$img['url']}" target="_blank"><img src="{G_UPLOAD_PATH}/linkimg/{wc:$img['logo']}"/></a></li>
+	{wc:loop:end}	
+	</ul>
+</div>  
+<div class="links_exp">
+	<h3><b>联系方式</b></h3>
+	<p>
+		电话：{wc:fun:_cfg("cell")}<br>
+	</p>                 
+</div>
+{wc:templates "index","footer"}

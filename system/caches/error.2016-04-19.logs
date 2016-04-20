@@ -1,0 +1,30 @@
+[19-Apr-2016 02:00:45 UTC] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) in E:\wamp\www\yungou\system\libs\db_mysql.class.php on line 60
+[19-Apr-2016 02:00:45 UTC] PHP Stack trace:
+[19-Apr-2016 02:00:45 UTC] PHP   1. {main}() E:\wamp\www\yungou\index.php:0
+[19-Apr-2016 02:00:45 UTC] PHP   2. System::CreateApp() E:\wamp\www\yungou\index.php:61
+[19-Apr-2016 02:00:45 UTC] PHP   3. System::load_sys_class() E:\wamp\www\yungou\system\libs\system.class.php:188
+[19-Apr-2016 02:00:45 UTC] PHP   4. application->__construct() E:\wamp\www\yungou\system\libs\system.class.php:28
+[19-Apr-2016 02:00:45 UTC] PHP   5. application->global_init() E:\wamp\www\yungou\system\libs\application.class.php:19
+[19-Apr-2016 02:00:45 UTC] PHP   6. application->global_controller() E:\wamp\www\yungou\system\libs\application.class.php:27
+[19-Apr-2016 02:00:45 UTC] PHP   7. index->__construct() E:\wamp\www\yungou\system\libs\application.class.php:41
+[19-Apr-2016 02:00:45 UTC] PHP   8. base->__construct() E:\wamp\www\yungou\system\modules\go\index.action.php:9
+[19-Apr-2016 02:00:45 UTC] PHP   9. System::load_sys_class() E:\wamp\www\yungou\system\modules\member\lib\base.class.php:9
+[19-Apr-2016 02:00:45 UTC] PHP  10. model->__construct() E:\wamp\www\yungou\system\libs\system.class.php:28
+[19-Apr-2016 02:00:45 UTC] PHP  11. call_user_func_array() E:\wamp\www\yungou\system\libs\model.class.php:41
+[19-Apr-2016 02:00:45 UTC] PHP  12. db_mysql::GetObject() E:\wamp\www\yungou\system\libs\model.class.php:41
+[19-Apr-2016 02:00:45 UTC] PHP  13. db_mysql->__construct() E:\wamp\www\yungou\system\libs\db_mysql.class.php:98
+[19-Apr-2016 02:00:45 UTC] PHP  14. db_mysql->connect() E:\wamp\www\yungou\system\libs\db_mysql.class.php:41
+[19-Apr-2016 02:00:45 UTC] PHP  15. mysql_connect() E:\wamp\www\yungou\system\libs\db_mysql.class.php:60
+[19-Apr-2016 06:08:59 UTC] PHP Fatal error:  Call to undefined function curl_init() in E:\wamp\www\yungou\system\libs\sendmobile.class.php on line 500
+[19-Apr-2016 06:08:59 UTC] PHP Stack trace:
+[19-Apr-2016 06:08:59 UTC] PHP   1. {main}() E:\wamp\www\yungou\index.php:0
+[19-Apr-2016 06:08:59 UTC] PHP   2. System::CreateApp() E:\wamp\www\yungou\index.php:61
+[19-Apr-2016 06:08:59 UTC] PHP   3. System::load_sys_class() E:\wamp\www\yungou\system\libs\system.class.php:188
+[19-Apr-2016 06:08:59 UTC] PHP   4. application->__construct() E:\wamp\www\yungou\system\libs\system.class.php:28
+[19-Apr-2016 06:08:59 UTC] PHP   5. application->global_init() E:\wamp\www\yungou\system\libs\application.class.php:19
+[19-Apr-2016 06:08:59 UTC] PHP   6. call_user_func() E:\wamp\www\yungou\system\libs\application.class.php:29
+[19-Apr-2016 06:08:59 UTC] PHP   7. user->mobilecheck() E:\wamp\www\yungou\system\libs\application.class.php:29
+[19-Apr-2016 06:08:59 UTC] PHP   8. send_mobile_reg_code() E:\wamp\www\yungou\system\modules\member\user.action.php:343
+[19-Apr-2016 06:08:59 UTC] PHP   9. _sendmobile() E:\wamp\www\yungou\system\funcs\send.fun.php:33
+[19-Apr-2016 06:08:59 UTC] PHP  10. sendmobile->send() E:\wamp\www\yungou\system\funcs\global.fun.php:455
+[19-Apr-2016 06:08:59 UTC] PHP  11. sendmobile->cfg_send_3() E:\wamp\www\yungou\system\libs\sendmobile.class.php:108

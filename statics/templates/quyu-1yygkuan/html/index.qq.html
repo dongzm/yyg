@@ -1,0 +1,90 @@
+{wc:templates "index","header"}   
+<!--内容 开始-->
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_CSS}/qqhelp.css"/>
+<script type="text/javascript" charset="utf-8" src="{G_TEMPLATES_JS}/area_city.js"></script>
+<script type="text/javascript">
+var opt0 =["----请选择----","----请选择----","----请选择----"];//初始值
+</script>
+
+<div class="help-main">
+	<div class="qqGroup">
+		<div class="qqTitle">
+			<span class="groupt">{wc:fun:_cfg('web_name_two')}<b>QQ</b>群</span>
+			<span>为打造更具公平、透明的{wc:fun:_cfg('web_name_two')}平台，{wc:fun:_cfg('web_name_two')}特成立各地QQ交流群（可在选择框查找本地群），欢迎广大云友加入。<br>另外，{wc:fun:_cfg('web_name_two')}正在招募各地群主加盟，也可自建群，具体待遇和要求请咨询客服QQ:{wc:fun:_cfg("qq")}</span>
+		</div>
+		<div id="listTopContents" class="qqList"><p>直属群</p>
+		<ul>
+		{wc:loop $lists2  $v}
+		<li><dt><img border="0" alt="{wc:$v['name']}" src="{G_TEMPLATES_IMAGE}/logo.jpg"></dt><dt>{wc:$v['name']}{wc:if $v['full']=='已满'}<img src="{G_TEMPLATES_IMAGE}/qqhot.gif"/>{wc:if:end}</dt><dd><a href="{wc:$v['qqurl']}" style="color:#82CD4C">{wc:$v['qq']}</a></dd></li>
+		{wc:loop:end}
+		</ul></div>	
+		
+		<div class="qsearch">			
+			<ul>
+				<li>
+					<label>筛选：</label>
+				</li>
+				<li>				
+				 <select id="s_province"  name="s_province" STYLE="height:30px;width:130px;background:url((G_TEMPLATES_IMAGE)/select.gif);"></select>&nbsp;&nbsp;省	   
+				 <select id="s_city" name="s_city" STYLE="height:30px;width:130px;"></select>&nbsp;&nbsp;县 
+				 <select id="s_county"  name="s_county" STYLE="height:30px;width:130px;"></select>&nbsp;&nbsp;区 					 
+				</li>			
+                <script type="text/javascript">_init_area(opt0);</script>
+			</ul>
+			<span>地方群</span>
+		</div>		
+		<div id="listContents" class="qqList">
+		<ul>
+		{wc:loop $lists1  $v}
+		<li ><dt><img border="0" alt="{wc:$v['name']}" src="{G_TEMPLATES_IMAGE}/logo.jpg"></dt><dt>{wc:$v['name']}{wc:if $v['full']=='已满'}<img src="{G_TEMPLATES_IMAGE}/qqhot.gif"/>{wc:if:end}</dt><dd><a href="{wc:$v['qqurl']}">{wc:$v['qq']}</a></dd></li>
+		{wc:loop:end}
+		</ul></div>		
+	</div>
+	</div>
+    
+    	<script type="text/javascript">
+	$(function(){	
+	 var str='----请选择----';
+       $("#s_province").change(function(){	   
+	     var  prov = $("#s_province").val(); 
+		 var cityv = $("#s_city").val();
+		 var  couv = $("#s_county").val();
+		$.ajax({
+			type: "get",
+			url: "{WEB_PATH}/go/qq_qun/get_cityqq/"+prov+'/'+cityv+'/'+couv,
+			success: function(data){				
+			$("#listContents").html(data);
+			}
+		});
+
+		$("#s_city").change(function(){	  
+	     var  prov = $("#s_province").val(); 
+		 var cityv = $("#s_city").val();
+		 var  couv = $("#s_county").val();
+		 $.ajax({
+			type: "get",
+			url: "{WEB_PATH}/go/qq_qun/get_cityqq/"+prov+'/'+cityv+'/'+couv,
+			success: function(data){
+			$("#listContents").html(data);
+			}
+		});
+
+		 $("#s_county").change(function(){	  
+	     var  prov = $("#s_province").val(); 
+		 var cityv = $("#s_city").val();
+		 var  couv = $("#s_county").val();
+		 $.ajax({
+			type: "get",
+			url: "{WEB_PATH}/go/qq_qun/get_cityqq/"+prov+'/'+cityv+'/'+couv,
+			success: function(data){
+			$("#listContents").html(data);
+			}
+		});
+	   });
+		   
+	   });
+		   
+	   });
+	});
+	</script>
+	{wc:templates "index","footer"}

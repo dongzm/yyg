@@ -1,0 +1,1 @@
+Base.getScript("/statics/templates/quyu-1yygkuan/js/IndexFun.js?date=2014112601");

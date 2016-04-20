@@ -1,0 +1,103 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-setUp.css"/>
+<script type="text/javascript">
+$("#grsz").attr('class','sid-icon09 sid-hcur');
+$(function(){		
+	var demo=$(".registerform").Validform({
+		tiptype:2,
+		datatype:{
+			"tel":/([a-z][A-Z][0-9])+/,
+			"nic":/^[A-Za-z0-9_\u4e00-\u9fa5]{2,20}$/,
+		},
+	});	
+	demo.tipmsg.w["tel"]="请正确输入电话号码(区号、号码必填，用“-”隔开)";
+	demo.tipmsg.w["nic"]="昵称为2-20个汉字、字母、数字、“_”字符组成";
+	demo.addRule([
+	{
+		ele:"#nicxx",
+		datatype:"nic",
+	},
+	{
+		ele:"#txt_ship_tel",
+		datatype:"tel",
+	}]);
+});
+</script>
+<div class="R-content">
+	{wc:templates "member","shezhi"}
+	<div class="prompt orange">完善以下资料，{wc:fun:_cfg('web_name_two')}不会以任何形式公开您的个人隐私，请放心填写！<s></s></div>
+    {wc:if $member['email']==null || $member['username']==null}
+		<div class="prompt orange" style="margin-top: 3px;">"新用户完善昵称，即可得到完善昵称赠送的200福分！绑定手机和邮箱，又可以免费赠送200福分，福分可以免费参与云购哦！"<s></s></div>
+	{wc:if:end}
+    
+	<div class="info">
+	<form class="registerform" method="post" action="{WEB_PATH}/member/home/usermodify">
+		<table border="0" cellpadding="0" cellspacing="8">
+			<tr>
+				{wc:if $member['mobile']!=null && $member['mobilecode']=='1'}		
+				<td align="right"><em><font>*</font><label>手机：</label></em></td>
+				<td>
+					<b>{wc:$member['mobile']}</b> 
+					 已验证
+				</td>
+				{wc:else}
+				<td align="right"><em><font>*</font><label>手机：</label></em></td>
+				<td>
+					<a style="margin-left:0;" href="{WEB_PATH}/member/home/mobilechecking" title="绑定手机">绑定手机</a>
+				</td>
+				{wc:if:end}
+			</tr>
+			<tr>
+				{wc:if $member['email']!=null && $member['emailcode']=='1'}		
+				<td align="right"><em><font>*</font><label>邮箱：</label></em></td>
+				<td>
+					<b>{wc:$member['email']}</b> 
+					 已验证
+				</td>
+				{wc:else}
+				<td align="right"><em><font>*</font><label>邮箱：</label></em></td>
+				<td>
+					<a style="margin-left:0;" href="{WEB_PATH}/member/home/mailchecking" title="绑定邮箱">绑定邮箱</a>
+				</td>
+				{wc:if:end}
+			</tr>
+			<tr>
+				{wc:if $member_qq['b_id']!=null || $member_qq['b_type']=='qq'}		
+				<td align="right"><em><font>*</font><label>QQ：</label></em></td>
+				<td>
+					 已绑定
+				</td>
+				{wc:else}
+				<td align="right"><em><font>*</font><label>QQ：</label></em></td>
+				<td>
+					<a style="margin-left:0;" href="{WEB_PATH}/member/home/qqclock" title="请绑定qq">请绑定qq</a>
+				</td>
+				{wc:if:end}
+			</tr>
+			<tr>
+				<td align="right"><em><font>*</font><label>昵称：</label></em></td>
+				<td>
+					<input id="nicxx" datatype="nic" nullmsg="昵称不能为空" name="username" value="{wc:$member['username']}" type="text"  class="txt gray" maxlength="20" />					
+				</td>					
+				<td><div class="Validform_checktip">昵称为2-20个汉字、字母、数字、“_”字符组成</div></td>
+			</tr>
+			<tr>
+				<td align="right"><em><font>&nbsp;</font><label>签名：</label></em></td>
+				{wc:if $member['qianming']==null}
+				<td><textarea name="qianming" class="info_txtarea gray03" >让别人看到不一样的你！</textarea></td>
+				{wc:else}
+				<td><textarea name="qianming" class="info_txtarea gray03" >{wc:$member['qianming']}</textarea></td>
+				{wc:if:end}
+			</tr>
+			<tr>
+				<td><em>&nbsp;</em></td>
+				<td><input name="submit" type="submit" class="bluebut" value="保存"></td>
+			</tr>
+		</table>
+	</form>	
+	</div>
+</div>
+</div>
+{wc:templates "index","footer"}

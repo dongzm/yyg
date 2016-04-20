@@ -1,0 +1,116 @@
+﻿@charset "utf-8";
+	.bg {
+	background:url(../images/B_bg2.jpg) no-repeat center top;
+}
+.banner {
+	text-align:center;
+	width:980px;
+	margin:0 auto;
+	padding-top:20px;
+}
+.menu {
+	height:39px;
+	width:980px;
+	margin:0 auto;
+	background:url(../images/B_dh_bg.gif) repeat-x left top;
+	margin-bottom:2px;
+	width:980px;
+	font-size:14px;
+}
+.menu a {
+	text-decoration:none;
+	color:#2c4361;
+	font-weight:bold;
+}
+.menu a:hover {
+	color:#e00;
+}
+.menu .menu_right {
+	float:right;
+	height:39px;
+	width:4px;
+	background:url(../images/B_title_pic.gif) no-repeat -24px -153px;
+}
+.menu .menu_left {
+	float:left;
+	height:39px;
+	width:4px;
+	background:url(../images/B_title_pic.gif) no-repeat left -153px;
+}
+.menu .menu_center {
+	height:39px;
+	width:790px;
+	text-align:center;
+	margin:0 auto;
+	padding:0 0 0 50px;
+}
+.menu .menu_center li {
+	float:left;
+	line-height:38px;
+	margin:0 10px;
+}
+.menu .menu_center .menuline {
+	background:#fff url(../images/B_title_pic.gif) no-repeat -11px -153px;
+	width:3px;
+	height:39px;
+}
+.con {
+	background:#f9fafb url(../images/content_bg.gif) no-repeat left top;
+	padding:15px 25px;
+	font-size:14px;
+	color:#333;
+	line-height:24px;
+	border:1px solid #dce2e6;
+	width:928px;
+	margin:0 auto;
+}
+.con span {
+	display:none;
+}
+.con .fonttop {
+	font-weight:bold;
+	font-family:"微软雅黑","宋体";
+	color:#1e3656;
+	font-size:15px;
+	line-height:25px;
+	margin-bottom:30px;
+}
+.con .title1 {
+	height:25px;
+	margin-top:20px;
+	background:url(../images/B_title_pic.gif) no-repeat left top;
+}
+.con .title2 {
+	height:25px;
+	margin-top:20px;
+	background:url(../images/B_title_pic.gif) no-repeat left -30px;
+}
+.con .title3 {
+	height:25px;
+	margin-top:20px;
+	background:url(../images/B_title_pic.gif) no-repeat left -58px;
+}
+.con .title4 {
+	height:25px;
+	margin-top:20px;
+	background:url(../images/B_title_pic.gif) no-repeat left -90px;
+}
+.con .title5 {
+	height:25px;
+	margin-top:20px;
+	background:url(../images/B_title_pic.gif) no-repeat left -118px;
+}
+.bg .con .text {
+	margin-bottom:10px;
+	padding:20px;
+	background:url(../images/B_line.gif) no-repeat left bottom;
+}
+.linktext {
+	background:#f9fafb url(../images/B_content_pic.gif) no-repeat 10px 10px;
+	padding-left:180px;
+}
+.footer {
+	margin-top:5px;
+	width:980px;
+	margin:0 auto;
+}

@@ -1,0 +1,111 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/Lottery.css"/>
+<div class="Current_nav"><a href="{WEB_PATH}">首页</a> &gt; 最新揭晓</div>
+<!--开奖列表开始-->
+<div class="Newpublish">
+	<div class="NewpublishL">
+		<div id="current" class="publish_Curtit">
+			<h1 class="fl">最新揭晓</h1>
+			<span id="spTotalCount">(到目前为止共揭晓商品<em class="orange">{wc:$total}</em>件)</span>
+		</div>
+		<div class="publishBor">
+			<div class="publishCen" id="listDivTitle">
+				<ul id="ProductList">
+					{wc:loop $shopqishu $qishu}
+                    {wc:php:start}
+                    	$qishu['q_user'] = unserialize($qishu['q_user']);
+                    {wc:php:end}
+					<li class="Cursor">
+						<a class="fl goodsimg" href="{WEB_PATH}/dataserver/{wc:$qishu['id']}" target="_blank" >
+						<img alt="" src="{G_UPLOAD_PATH}/{wc:$qishu['thumb']}">
+						</a>
+						<div class="publishC-Member gray02"><a class="fl headimg" href="{WEB_PATH}/uname/{wc:fun:idjia($qishu['q_uid'])}" target="_blank" >
+							
+							<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:$qishu['q_user']['img']}" width="50" height="50" border="0"/>
+							
+							</a>
+							<p>获得者：<a class="blue Fb" href="{WEB_PATH}/uname/{wc:fun:idjia($qishu['q_uid'])}" target="_blank">{wc:fun:get_user_name($qishu['q_user'])}</a></p>
+							<p>{wc:fun:_cfg('web_name_two')}：<em class="orange Fb">{wc:fun:get_user_goods_num($qishu['q_uid'],$qishu['id'])}</em>人次</p>							
+						</div>
+						<div class="publishC-tit">
+							<h3><a href="{WEB_PATH}/dataserver/{wc:$qishu['id']}" target="_blank" class="gray01">(第{wc:$qishu['qishu']}期){wc:$qishu['title']}</a></h3>
+							<p class="money">商品价值：<span class="rmb">{wc:$qishu['money']}</span></p>
+							<p class="Announced-time gray02">揭晓时间：{wc:fun:microt($qishu['q_end_time'],'r')}</p>
+						</div>
+						<div class="details">
+							<p class="fl details-Code">幸运{wc:fun:_cfg('web_name_two')}码：<em class="orange Fb">{wc:$qishu['q_user_code']}</em></p>
+							<a class="fl details-A" href="{WEB_PATH}/dataserver/{wc:$qishu['id']}" rel="nofollow" target="_blank">查看详情</a>
+							
+						</div>
+					</li>	
+					{wc:loop:end}
+				</ul>
+			</div>
+			{wc:if $total>$num}
+					<div class="pagesx">{wc:page:two}</div>
+			{wc:if:end}
+		</div>
+	</div>
+	<div class="NewpublishR">
+		<div class="Newpublishbor">
+			<div class="Rtitle gray01">TA们正在{wc:fun:_cfg('web_name_two')} </div>
+			<div class="Rcenter buylistH">
+				<ul id="buyList" style="margin-top: 0px;">
+					{wc:loop $member_record $record}
+					<li><a href="{WEB_PATH}/uname/{wc:fun:idjia($record['uid'])}" target="_blank" class="pic">						
+						{wc:if userid($record['uid'],'img')==null}
+						<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+						{wc:else}
+						<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($record['uid'],'img')}" width="50" height="50" border="0"/>
+						{wc:if:end}	
+						</a>
+						<p class="Rtagou"><a class="blue" href="{WEB_PATH}/uname/{wc:fun:idjia($record['uid'])}" target="_blank">{wc:fun:userid($record['uid'],'username')}</a>刚刚{wc:fun:_cfg('web_name_two')}了</p>
+						<p class="Rintro"><a class="gray01" href="{WEB_PATH}/goods/{wc:$record['shopid']}" target="_blank">{wc:$record['shopname']}</a></p>
+					</li>
+					{wc:loop:end}
+				</ul>
+			</div>
+		</div>
+		<div class="blank10"></div>
+		<div class="Newpublishbor">
+			<div class="Rtitle gray01">人气排行 </div>
+			<div class="Rcenter RcenterPH">
+				<ul class="RcenterH" id="RcenterH">						
+					{wc:loop $shoplist $list}
+					<li>
+						<div name="simpleinfo">
+							<span class="pic"><a href="{WEB_PATH}/goods/{wc:$list['id']}" target="_blank">
+							{wc:if shopimg($list['id'])!=''}
+								<img src="{G_UPLOAD_PATH}/{wc:fun:shopimg($list['id'])}">
+							{wc:else}
+								<img src="{G_UPLOAD_PATH}/photo/member.jpg_30.jpg">
+							{wc:if:end}
+							</a></span>
+							<p class="Rintro gray01"><a href="{WEB_PATH}/goods/{wc:$list['id']}" target="_blank">{wc:$list['title']}</a></p>
+							<p><i>剩余人次</i><em>{wc:$list['zongrenshu']-$list['canyurenshu']}</em></p>
+						</div>
+					</li>
+					{wc:loop:end}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+    $(function(){
+       var _BuyList=$("#buyList");
+        var Trundle = function () {
+            _BuyList.prepend(_BuyList.find("li:last")).css('marginTop', '-85px');
+            _BuyList.animate({ 'marginTop': '0px' }, 800);
+        }
+        var setTrundle = setInterval(Trundle, 3000);
+        _BuyList.hover(function () {
+            clearInterval(setTrundle);
+            setTrundle = null;
+        },function () {
+            setTrundle = setInterval(Trundle, 3000);
+        });
+    });
+    </script>
+{wc:templates "index","footer"}

@@ -1,0 +1,66 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/css.css"/>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/pageDialog.css"/>
+<div class="layout980 clearfix"> 
+{wc:templates "us","left"}
+<div class="content clearfix">
+	<div class="per-info">
+		<ul>
+			<li class="info-mane gray02">
+				<b class="gray01">{wc:fun:get_user_name($member,'username')}</b>
+			</li>
+			<li class="info-address"><span><a href="" class="blue"><s></s>{WEB_PATH}/uname/{wc:fun:idjia($member['uid'])}</a></span></li>
+			<li class="info-intro gray02">
+			{wc:if $member['qianming']!=null}
+			{wc:$member['qianming']}
+			{wc:else}
+			这家伙很懒，什么都没留下。
+			{wc:if:end}
+			</li>
+			</ul></div>
+	{wc:templates "us","tab"}
+	{wc:if $membergo}
+	<div id="divInfo0" class="New-content">
+		{wc:loop $membergo $go}
+				{wc:php:start}
+        				$jiexiao = get_shop_if_jiexiao($go['shopid']);
+						 if ($jiexiao['q_uid']){
+							$url = "dataserver";
+						 }else{
+							$url = "goods";
+						 }
+    			{wc:php:end}
+		<div class="scroll-list">
+			<div class="R-tit">
+				<span class="tit-name gray01">
+					{wc:fun:get_user_name($member,'username')}
+				</span>
+				<i>在{wc:fun:microt($go['time'],"r")}{wc:fun:_cfg('web_name_two')}了</i>
+                 	
+				<span class="tit blue"><a target="_blank" href="{WEB_PATH}/{wc:$url}/{wc:$go['shopid']}}" class="blue">{wc:$go['shopname']}</a></span>
+			</div>
+			<div class="buy-com">
+				<p class="buy-pic"><a target="_blank" href="{WEB_PATH}/{wc:$url}/{wc:$go['shopid']}"><img src="{G_UPLOAD_PATH}/{wc:$jiexiao['thumb']}"></a></p>
+				<div class="buy-rcon">
+					<p class="buy-name"><a target="_blank" rel="nofollow" href="{WEB_PATH}/{wc:$url}/{wc:$go['shopid']}" class="blue">(第{wc:$go['shopqishu']}期){wc:$go['shopname']}</a></p>                    
+					{wc:if $jiexiao['q_uid']}
+					<p class="buy-money gray02">价值：<span class="money"><i class="rmb">{wc:$jiexiao['money']}</i></span></p>
+					<p class="buy-code gray02">幸运{wc:fun:_cfg('web_name_two')}码：<span class="orange">{wc:$jiexiao['q_user_code']}</span></p>
+					<p class="buy-time gray02">揭晓时间：{wc:fun:date("Y-m-d H:i:s",$jiexiao['q_end_time'])}</p>
+					<p><a target="_blank" href="{WEB_PATH}/dataserver/{wc:$go['shopid']}" class="button03">去看看</a></p>
+					{wc:else}
+					<p><a target="_blank" href="{WEB_PATH}/goods/{wc:$go['shopid']}" class="button03">去看看</a></p>
+					{wc:if:end}
+				</div>
+			</div>
+		</div>
+		{wc:loop:end}		
+	</div>
+	{wc:else}
+	<div class="New-content"><div class="tips-con"><i></i>TA还没有{wc:fun:_cfg('web_name_two')}商品哦</div></div> 
+	{wc:if:end}   
+</div>
+
+
+</div>
+{wc:templates "index","footer"}

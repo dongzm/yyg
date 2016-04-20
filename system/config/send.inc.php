@@ -1,0 +1,1 @@
+<?php return array('type'=>'3'); ?>

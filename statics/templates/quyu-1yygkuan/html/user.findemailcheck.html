@@ -1,0 +1,21 @@
+{wc:templates "index","header"}
+<div class="login_layout">    
+	<div class="login_title">
+		<h2>密码忘了？不要着急，通过以下方式即可帮您顺利的找回来！</h2>
+	</div>
+	<div class="login_Content">		
+		<div id="divError" class="login_CMobile_Complete hidden">
+			<p><span class="orange Fb">请稍候，系统正在发送邮件...</span></p>
+		</div>
+		<div id="divNormal" class="login_CMobile_Complete">
+			<p>{wc:fun:_cfg('web_name_two')}已向您的 <span class="orange">{wc:$info['email']}</span> 邮箱发送了一封验证邮件，请前往收信，完成验证！</p>
+			<a id="hylinkMails" class="login_Email_but" href="http://mail.{wc:$emailurl[1]}" target="_blank">登录邮箱完成验证</a>
+		</div>
+		<div class="login_Explain">
+			<h2>没收到验证邮件？</h2>
+			<p>1.查看邮箱的垃圾箱或广告箱，邮件有可能被误认为垃圾邮件。</p>
+			<p>2.如果在10分钟后仍未收到验证邮件，请点击 <a id="retrySend" href="{WEB_PATH}/member/finduser/findsendemail/{wc:$enname}" class="login_SendoutbutClick">重新发送</a> </p>
+		</div>	
+	</div>
+</div>
+{wc:templates "index","footer"}

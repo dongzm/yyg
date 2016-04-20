@@ -1,0 +1,124 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_CSS}/ygRecord.css"/>
+<link rel="stylesheet" href="{G_PLUGIN_PATH}/calendar/calendar-blue.css" type="text/css"> 
+<script type="text/javascript" charset="utf-8" src="{G_PLUGIN_PATH}/calendar/calendar.js"></script>
+<div class="ygRecord">
+	<h3><span>历史{wc:fun:_cfg('web_name_two')}记录</span><p><a href="{WEB_PATH}/buyrecordbai">查看最新{wc:fun:_cfg('web_name_two')}记录&gt;&gt;</a></p></h3>
+	<div class="border"></div>
+	<div class="RecordSearch">
+    	<form action="" method="post">
+        <div class="from">
+            <p>起止时间</p>
+           <input value="{wc:fun:date("Y-m-d")}" id="txtFirstT1" name="start_time_data" class="time" readonly="readonly" type="text">     
+			<script type="text/javascript">
+				date = new Date();
+				Calendar.setup({
+					inputField     :    "txtFirstT1",
+					ifFormat       :    "%Y-%m-%d",
+					showsTime      :    true,
+					timeFormat     :    "24"
+				});
+			</script>	
+           <select id="sltFirstT2" name="start_time_h">
+				{wc:php:start}				
+					for($i=0;$i<23;$i++){						
+						if($i==($this_time_h-2)){
+							$selecteds = ' selected="selected"';
+						}else{
+							$selecteds = '';
+						}
+						if($i<10)$i='0'.$i;
+				{wc:php:end}
+				<option value="{wc:$i}"{wc:$selecteds}>{wc:$i}</option>
+				{wc:php:start} } {wc:php:end}
+			</select>
+            <p>时</p>
+           <select id="sltFirstT3" name="start_time_i">
+				{wc:php:start}								
+					for($i=0;$i<60;$i++){		
+						if($i==$this_time_i){
+							$selecteds = ' selected="selected"';
+						}else{
+							$selecteds = '';
+						}
+						if($i<10)$i='0'.$i;
+				{wc:php:end}
+				<option value="{wc:$i}"{wc:$selecteds}>{wc:$i}</option>
+				{wc:php:start} } {wc:php:end}
+		  </select>
+            <p>分&nbsp;&nbsp;&nbsp;至</p>
+        </div>        
+        <div class="over">
+		   <input value="{wc:fun:date("Y-m-d")}" name="end_time_data"  id="txtEndT1" class="time" readonly="readonly" type="text">	
+           <script type="text/javascript">
+				date = new Date();
+				Calendar.setup({
+					inputField     :    "txtEndT1",
+					ifFormat       :    "%Y-%m-%d",
+					showsTime      :    true,
+					timeFormat     :    "24"
+				});
+			</script>	
+            		
+           <select id="sltEndT2" name="end_time_h">
+				{wc:php:start}				
+					for($i=0;$i<23;$i++){						
+						if($i==$this_time_h){
+							$selecteds = ' selected="selected"';
+						}else{
+							$selecteds = '';
+						}
+						if($i<10)$i='0'.$i;
+				{wc:php:end}
+				<option value="{wc:$i}"{wc:$selecteds}>{wc:$i}</option>
+				{wc:php:start} } {wc:php:end}				
+			</select>
+            <p>时</p>
+            <select id="sltEndT3" name="end_time_i">
+				{wc:php:start}								
+					for($i=0;$i<60;$i++){		
+						if($i==$this_time_i){
+							$selecteds = ' selected="selected"';
+						}else{
+							$selecteds = '';
+						}
+						if($i<10)$i='0'.$i;
+				{wc:php:end}
+				<option value="{wc:$i}"{wc:$selecteds}>{wc:$i}</option>
+				{wc:php:start} } {wc:php:end}
+			</select>
+            <p>分</p>
+        </div>
+				<input id="btnQuery" class="Recordcx" value="查询"  name="dosubmit" type="submit">
+				<span id="spanServerTime" style="display:none">2013-10-22 08:52:53</span>
+	</div>
+	<div id="recordList">
+		<ul class="Record_title">
+			<li class="time">{wc:fun:_cfg('web_name_two')}时间</li>
+			<li class="nem">会员账号</li>
+			<li class="name">{wc:fun:_cfg('web_name_two')}商品名称</li>
+			<li class="much">{wc:fun:_cfg('web_name_two')}人次</li>
+		</ul>
+        {wc:php:start}$n=1;{wc:php:end}    
+        {wc:loop $RecordList $Record}
+        {wc:php:start}
+        	$n++;
+        	$Record['time'] = explode(".",$Record['time']);
+            if($n%2==0){$class='Record_content';}else{$class='Record_contents';}
+        {wc:php:end}            
+		<ul class="{wc:$class}">
+			<li class="time">{wc:fun:date("Y-m-d H:i:s",$Record['time'][0])}.{wc:$Record['time'][1]}</li>
+			<li class="nem"><a class="blue" href="{WEB_PATH}/uname/{wc:$Record['uid']}" target="_blank">{wc:$Record['username']}</a></li>
+			<li class="name"><a href="{WEB_PATH}/goods/{wc:$Record['shopid']}">（第{wc:$Record['shopqishu']}期）{wc:fun:_strcut($Record['shopname'],60,null)}</a></li>
+			<li class="much">{wc:$Record['gonumber']}人次</li>
+		</ul>
+        {wc:loop:end}   
+        
+         <div class="page_nav">
+            <ul class="pageULEx">
+            </ul>
+         </div>
+        
+	</div>
+</div>
+{wc:templates "index","footer"}

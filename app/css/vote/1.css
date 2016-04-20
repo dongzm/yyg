@@ -1,0 +1,25 @@
+.vote_bar{width:90%; height:13px; border:1px solid #999}
+.vote_bar div{background: url(images/x_bg.png) repeat-x left -194px; float: left; position:relative; height:16px;_height:13px}
+.vote_bar div span{ display:block; position:absolute; left:0; top:0; width:180px; text-align:center; height:16px; font-size:10px; line-height:12px; vertical-align:middle}
+
+/*分页*/
+#pages { padding:14px 0 10px;font-family:宋体; text-align:right}
+#pages a { display:inline-block; height:22px; line-height:22px; background:#fff; border:1px solid #e3e3e3; text-align:center; color:#333; padding:0 10px}
+#pages a.a1 { background:url(../images/admin_img/pages.png) no-repeat 0 5px; width:56px; padding:0 }
+#pages a:hover { background:#f1f1f1; color:#000; text-decoration:none; }
+#pages span { display:inline-block; height:22px;padding:0 10px; line-height:22px; background:#5a85b2; border:1px solid #5a85b2; color:#fff; text-align:center; }
+.page .noPage { display:inline-block; height:22px; line-height:22px; background:url(../img/icu/titleBg.png) repeat-x 0 -55px ; border:1px solid #e3e3e3; text-align:center; color:#a4a4a4; }
+
+#imgPreview td.on{background:#f4f9fe}
+#imgPreview td.on a{background:url("../images/msg_bg.png") no-repeat right -250px;vertical-align:middle; padding-right:70px;display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; height:16px; line-height:16px}
+
+/*容器样式*/
+.col-tab{ }
+.col-tab ul.tabBut{height:27px; padding-left:14px;position:relative;bottom:-1px}
+.col-tab ul.tabBut li{float:left; border:1px solid #dce3ed; height:25px; line-height:26px; margin-right:5px;}
+.col-tab ul.tabBut li{ background:#eaeef4; padding:0 8px;}
+.col-tab ul.tabBut li.on{position:relative; background:#fff;border-bottom:0;height:26px;_height:27px; font-weight:700;}
+.col-tab ul.tabBut li.icon{background-image:url(../images/icon/exclamation_small.png);padding-left:18px;background-repeat: no-repeat;background-position: 3px center;}
+.col-tab .content{border:1px solid #dce3ed;_zoom:1;}
+.col-tab .content-r{border-top:1px solid #dce3ed}
+.col-tab .contentList{border:1px solid #dce3ed;_zoom:1;}

@@ -1,0 +1,14 @@
+    <header class="g-header">
+        <div class="head-l">
+	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><s></s><b>返回</b></a>
+        </div>
+		{wc:if $item['q_end_time']!=''}
+        <h2>揭晓结果</h2>
+		<div class="head-r">
+	        <a href="{WEB_PATH}/mobile/mobile" class="z-Home"></a>
+        </div>
+		{wc:else}
+		<h2>商品详情</h2>
+		{wc:templates "mobile/index","headertop"}
+		{wc:if:end}
+    </header>

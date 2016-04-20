@@ -1,0 +1,1 @@
+Base.getScript(Gobal.Skin+"/js/mobile/AutoLotteryFun.js?v=130826");

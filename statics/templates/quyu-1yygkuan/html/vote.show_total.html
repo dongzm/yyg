@@ -1,0 +1,50 @@
+{wc:templates "index","header"}
+<link href="{wc:G_TEMPLATES_CSS}/vote/1.css" rel="stylesheet" type="text/css" />  
+<link href="{wc:G_TEMPLATES_CSS}/vote/table_form.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/link.css"/> 
+
+<div class="links_txt" style="border:3px solid #f60">
+<ul class="tabBut cu-li">
+<h3><b>投票列表</b></h3>
+</ul>
+	<div class="content pad-10" style="height:auto">
+		<form name="myform" action="" method="post">
+			<table width="100%" align="center"cellspacing="0" class="table-list">
+				<thead>
+					<tr>
+						<th>投票选项</th>
+						<th width="10%" align="center">投票数</th>
+						<th width='30%' align="center">图示</th>
+					</tr>
+				</thead>
+				   <tbody>
+					 
+					{wc:loop $vote_options $vote_opval}
+					<tr>
+						<td> {wc:$vote_opval['option_title']}</td>
+						<td align="center">{wc:$vote_opval['option_number']}</td>
+						<td align="center">
+						<div class="vote_bar">
+							<div style="width:100%"><span>{wc:$vote_number_total[$vote_opval['option_id']]}%</span> </div>
+						</div>
+						</td>		
+						</tr>
+					{wc:loop:end}
+				</tbody>	 
+			</table>
+		</form>
+	</div>
+</div>
+</div>
+
+ 
+
+  
+{wc:templates "index","footer"}
+
+ 
+
+
+
+
+ 

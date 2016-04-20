@@ -1,0 +1,258 @@
+﻿@charset "utf-8";
+
+body {
+	background: #f7f7f7;
+}
+
+.busCon {
+	width: 980px;
+	margin: 0 auto;
+}
+
+.busBanner img {
+	float: left;
+}
+
+.busJDZ {
+	clear: both;
+	width: 980px;
+	margin: 39px auto;
+	display: inline-block;
+}
+
+.busJDZ li {
+	position: relative;
+}
+
+.busJDZ li a {
+	cursor: pointer;
+}
+
+.busJDZ .busMar {
+	margin: 0 31px;
+	_margin: 0 28px;
+}
+
+.busAbout {
+	width: 305px;
+	float: left;
+}
+
+.busAbout li.busLi {
+	width: 305px;
+	position: relative;
+	left: 2px;
+	border-top: 2px solid #006fb5;
+	z-index: 20;
+}
+
+.busAbout li.busLi b,.busCoreT b,.busCircuitT b {
+	width: 127px;
+	height: 29px;
+	position: absolute;
+	top: -11px;
+}
+
+.busAbout li.busLi b {
+	left: -3px;
+}
+
+.busAbout li.busLi1 b {
+	background: url(../Images/pic_07.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://skin.1yyg.com/Business/Images/pic_07.png?v=131108");
+}
+
+.busAbout li.busLi2 b {
+	background: url(../Images/pic_09.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://skin.1yyg.com/Business/Images/pic_09.png?v=131108");
+}
+
+.busAbout li.busLi3 b {
+	background: url(../Images/pic_11.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://skin.1yyg.com/Business/Images/pic_11.png?v=131108");
+}
+
+.busAbout li.busLi4 {
+	width: 265px;
+	height: 130px;
+	padding: 35px 20px;
+	background: #fff;
+	border: 1px solid #e6e6e6;
+	border-top: 0 none;
+	color: #666;
+	font-size: 14px;
+	line-height: 25px;
+	position: relative;
+	overflow: hidden;
+	*top: -4px;
+	_top: -1px;
+}
+
+.busAbout li.busLi4 p {
+	text-indent: 2em;
+}
+
+.busAbout li.busLi4 a {
+	color: #666;
+	text-decoration: underline;
+}
+
+.busAbout li.busLi4 span {
+	padding-left: 42px;
+}
+
+.busJDZ li p a {
+	color: #999;
+}
+
+.busJDZ li a:hover {
+	color: #f60;
+}
+
+.busCore {
+	clear: both;
+	width: 980px;
+	margin: 0 auto;
+	background: #fff;
+}
+
+.busCoreT {
+	width: 977px;
+	position: relative;
+	left: 2px;
+	border-top: 2px solid #006fb5;
+}
+
+.busCoreT b {
+	background: url(../Images/pic_16.png) no-repeat;
+	left: -4px;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://skin.1yyg.com/Business/Images/pic_16.png?v=131108");
+}
+
+.busCoreB {
+	width: 978px;
+	border: 1px solid #e4e4e4;
+	border-top: 0 none;
+	padding: 10px 0 40px;
+	display: inline-block;
+}
+
+.busCoreB li {
+	float: left;
+	width: 338px;
+	height: 88px;
+	border: 1px solid #ededed;
+	padding: 30px;
+	color: #999;
+	font-size: 12px;
+	margin: 30px 0 0 60px;
+	line-height: 22px;
+	display: inline;
+	overflow: hidden;
+}
+
+.busCoreB li h3 {
+	font-size: 20px;
+	color: #333;
+	text-align: center;
+	font-family: "微软雅黑";
+	margin-bottom: 12px;
+	display: block;
+}
+
+.busCoreB li.busCoreB1 {
+	background: #fafafa url(../Images/pic_19.jpg) left top no-repeat;
+}
+
+.busCoreB li.busCoreB2 {
+	background: #fafafa url(../Images/pic_22.jpg) left top no-repeat;
+}
+
+.busCoreB li.busCoreB3 {
+	background: #fafafa url(../Images/pic_26.jpg) left top no-repeat;
+}
+
+.busCoreB li.busCoreB4 {
+	background: #fafafa url(../Images/pic_27.jpg) left top no-repeat;
+}
+
+.busCircuit {
+	clear: both;
+	width: 980px;
+	background: #fff;
+	margin: 40px auto;
+}
+
+.busCircuitT {
+	width: 977px;
+	position: relative;
+	left: 2px;
+	border-top: 2px solid #006fb5;
+}
+
+.busCircuitT b {
+	background: url(../Images/pic_30.png) no-repeat;
+	left: -4px;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://skin.1yyg.com/Business/Images/pic_30.png?v=131108");
+}
+
+.busCircuitB {
+	width: 978px;
+	border: 1px solid #e4e4e4;
+	border-top: 0 none;
+	padding: 40px 0;
+	display: inline-block;
+}
+
+.busCircuitB2 {
+	width: 938px;
+	height: 198px;
+	border: 1px solid #ededed;
+	background: #fafafa;
+}
+
+.busCircuitB2 li {
+	float: left;
+	color: #999;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+.busCircuitB2 li p {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.busCircuitB2 li p img {
+	position: relative;
+	left: -25px;
+}
+
+.busCircuitB2 li.busCir {
+	width: 210px;
+	height: 158px;
+	padding: 20px 11px 20px 25px;
+	background: url(../Images/pic_34.jpg) right top no-repeat;
+}
+
+.busCircuitB2 li.busCir3 {
+	width: 160px;
+}
+
+.busCircuitB2 li.busCir4 {
+	width: 160px;
+	background: none;
+}
+
+.busCircuitB2 h4 {
+	font-size: 18px;
+	color: #333;
+	display: block;
+	margin-bottom: 8px;
+	font-family: "微软雅黑";
+}

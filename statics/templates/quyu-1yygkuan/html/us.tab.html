@@ -1,0 +1,30 @@
+<div class="subnav">
+	<ul>
+		{wc:if $tab=="uname"}
+		<li class="poa-4"><a class="cur">TA的主页<s></s></a></li>
+		{wc:else}
+		<li class="poa-4"><a href="{WEB_PATH}/uname/{wc:fun:idjia($member['uid'])}" >TA的主页<s></s></a></li>
+		{wc:if:end}
+		
+		{wc:if $tab=="userbuy"}
+		<li class="poa-4"><a class="cur">{wc:fun:_cfg('web_name_two')}记录<s></s></a></li>
+		{wc:else}
+		<li class="poa-4"><a href="{WEB_PATH}/userbuy/{wc:fun:idjia($member['uid'])}" >购买记录<s></s></a></li>
+		{wc:if:end}
+		
+		{wc:if $tab=="userraffle"}
+		<li class="poa-4"><a class="cur">获得的商品<s></s></a></li>
+		{wc:else}
+		<li class="poa-4"><a href="{WEB_PATH}/userraffle/{wc:fun:idjia($member['uid'])}" >获得的商品<s></s></a></li>
+		{wc:if:end}
+		
+		<!-- {wc:if $tab=="userpost"}
+		<li class="poa-2"><a class="cur">晒单<s></s></a></li>
+		{wc:else}
+		<li class="poa-2"><a href="{WEB_PATH}/userpost/{wc:fun:idjia($member['uid'])}" >晒单<s></s></a></li>
+		 -->
+		{wc:if:end}
+		<!-- <li class="poa-4"><a href="http://u.1yyg.com/1000293094/UserBuy">云购记录<s></s></a></li>
+		<li class="poa-4"><a class="cur">获得的商品<s></s></a></li>
+		<li class="poa-2"><a href="http://u.1yyg.com/1000293094/UserPost">晒单<s></s></a></li> -->
+	</ul></div>

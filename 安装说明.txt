@@ -1,0 +1,8 @@
+安装说明：
+导入数据库文件：dede168.com.sql
+修改数据量配置文件:  system\config\database.inc.php
+后台地址：你的域名/?/admin
+后台帐号：admin  密码：admin
+
+
+更多免费源码请访问：www.dede168.com。网站源码交流群：97206582。

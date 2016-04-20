@@ -1,0 +1,29 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/css.css"/>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/pageDialog.css"/>
+<div class="layout980 clearfix"> 
+{wc:templates "us","left"}
+<div class="content clearfix">
+	<div class="per-info">
+		<ul>
+			<li class="info-mane gray02">
+				<b class="gray01">
+					{wc:fun:get_user_name($member,'username')}
+				</b>
+			</li>
+			<li class="info-address"><span><a href="" class="blue"><s></s>{WEB_PATH}uname/{wc:fun:idjia($member['uid'])}</a></span></li>
+			<li class="info-intro gray02">
+			{wc:if $member['qianming']!=null}
+			{wc:$member['qianming']}
+			{wc:else}
+			这家伙很懒，什么都没留下。
+			{wc:if:end}
+			</li>
+			</ul></div>
+	{wc:templates "us","tab"}
+	<div class="New-content"><div class="tips-con"><i></i>TA还没有晒单哦</div></div>   
+</div>
+
+
+</div>
+{wc:templates "index","footer"}

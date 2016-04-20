@@ -1,0 +1,43 @@
+{wc:templates "index","header"}
+<div class="login_layout">
+	<div class="login_title">
+		<h2>新用户注册</h2>
+		<ul class="login_process">
+			<li><b>1</b>填写注册信息</li>
+			<li class="login_arrow"></li>
+			<li class="login_processCur"><b>2</b>验证邮箱/验证手机</li>
+			<li class="login_arrow"></li>
+			<li><b>3</b>完成注册</li>
+		</ul>
+		<span>已经是会员？<a id="hylinkLoginPage" class="blue Fb" href="{WEB_PATH}/login">登录</a></span>
+	</div>
+	<div class="login_Content">          
+		<div id="divVerify" class="login_CEmail hidden" style="display: none;">
+			<dl>
+				<dt><img src="{G_TEMPLATES_STYLE}/images/login_exp03.png" border="0" alt=""></dt>
+				<dd>
+					<h2 class="orange Fb">您的帐号还未验证激活！</h2>
+					<p class="login_fs14">{wc:fun:_cfg("web_name")}已向您的 <span class="orange Fb">1234536@qq.com</span> 邮箱发送了一封验证邮件，请前往收信，完成验证！</p>
+					<a id="hylinkMailsA" class="login_Email_but" href="http://mail.qq.com/" target="_blank">登录邮箱完成验证</a>                    
+				</dd>
+			</dl>
+		</div>
+		<div id="divError" class="login_CMobile_Complete hidden" style="display: none;"></div>
+		<div id="divNormal" class="login_CMobile_Complete hidden" style="display: block;">
+        	{wc:if ($reg_message === '发送失败，请重新点击发送')}
+            	<p>{wc:$reg_message}</p>
+            {wc:else}            
+			<p>{wc:fun:_cfg("web_name")}已向您的 <span class="orange">{wc:$name}</span> 邮箱发送了一封验证邮件，请前往收信，完成验证!</p>
+			<a id="hylinkMailsB" class="login_Email_but" href="http://mail.{wc:$emailurl[1]}" target="_blank">登录邮箱完成验证</a>
+            {wc:if:end}
+            
+		</div>
+		<div class="login_Explain">
+			<h2>没收到验证邮件？</h2>
+			<p>1.查看邮箱的垃圾箱或广告箱，邮件有可能被误认为垃圾邮件。</p>
+			<p>2.如果在10分钟后仍未收到验证邮件，请点击 <a id="retrySend" href="{WEB_PATH}/member/user/sendemail/{wc:$enname}" class="login_SendoutbutClick">重新发送</a> </p>
+			<p>3.如果再次发送验证邮件您仍未收到，请更换邮箱 <a id="hylinkRegisterPageA" class="blue Fb" href="{WEB_PATH}/register">重新注册</a></p>
+		</div>			
+	</div>	
+</div>
+{wc:templates "index","footer"}

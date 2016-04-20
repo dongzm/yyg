@@ -1,0 +1,266 @@
+{wc:templates "index","header"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/AutoLottery.css"/>
+<div class="limit-banner">
+	<p>
+		<img src="{G_TEMPLATES_STYLE}/images/atuo_01.gif" border="0" alt="">
+		<a href="#regular" class="ExplainA"></a>
+	</p>
+</div>
+<div class="auto-nav">
+	<ul>
+		<li id="liTimerHead" class="fl autoCur">今天揭晓 <em>({wc:$jinri_time})</em></li>
+		<li id="liWillHead" class="fr">明天限时 <em>({wc:$minri_time})</em></li>
+	</ul>
+</div>
+
+<script>
+$(function(){
+	$(".auto-nav li").click(function(){
+		var id=$(".auto-nav li").index(this);
+		$(".auto-nav li").removeClass("autoCur").eq(id).addClass("autoCur");
+		$(".autoCon .showCon").hide().eq(id).show();
+	});
+	
+});
+
+$(function(){
+	$("li[name='normalItem']").hover(function(){
+                      $(this).addClass("autolistCur");
+                  },function(){
+                	 $(this).removeClass("autolistCur");
+        });
+	$(".jinrishop").eq(2).addClass("autolist-R");
+	$(".minrishop").eq(2).addClass("autolist-R");
+	
+});
+
+</script>
+<script>
+function lxfEndtime(objlist,len,thistimes){		 
+		  for(var i in objlist){
+			    var endtime = objlist[i]['endtimeto'];
+				var nowtime = thistimes;        //今天的日期(毫秒值)
+			  	var youtime = endtime - nowtime;		//还有多久(毫秒值)				
+                var seconds = youtime/1000;
+                var minutes = Math.floor(seconds/60);
+                var hours = Math.floor(minutes/60);
+                var days = Math.floor(hours/24);
+                var CDay = days;
+                var CHour= hours % 24;
+                var CMinute= minutes % 60;
+                var CSecond= Math.floor(seconds%60);//"%"是取余运算，可以理解为60进一后取余数，然后只要余数。
+			    objlist[i]['obj'].html("<span></span>剩余<em>"+CHour+"</em>时<em>"+CMinute+"</em>分<em>"+CSecond+"</em>秒");				
+				delete youtime,seconds,minutes,hours,days,CDay,CHour, CMinute, CSecond;
+				if( endtime <= nowtime ){
+					delete endtime, nowtime;			
+                    objlist[i]['obj'].html("<b>限时揭晓</b>&nbsp;&nbsp;正在计算中....");//如果结束日期小于当前日期就提示过期啦					
+					$.post("{WEB_PATH}/go/autolottery/autolottery_ret_install",{"shopid":objlist[i]['shopid']},function(data){																														
+						if(data == '-1'){
+							 objlist[i]['obj'].html("&nbsp;没有这个商品!");						
+						}
+						if(data == '-2'){
+							objlist[i]['obj'].html("&nbsp;商品揭晓失败!");					
+						}
+						if(data == '-3'){							
+							 objlist[i]['obj'].html("&nbsp;参与人数为0,不予揭晓!");						
+						}
+						if(data == '-4'){
+							 objlist[i]['obj'].html("&nbsp;商品还未到揭晓时间!");					
+						}
+						if(data == '-5'){
+							 objlist[i]['obj'].html("&nbsp;商品揭晓时间已过期!");						
+						}
+						if(data == '-6'){							
+							 objlist[i]['obj'].html("&nbsp;商品正在揭晓中!");						
+						}
+						if(data.length > 2){							
+							 objlist[i]['obj'].html("&nbsp;幸运码1是:"+data);						
+						}						
+						delete objlist[i];
+						return;
+					});	
+				}			
+				
+		  }//for 		  
+		     setTimeout(function(){
+						thistimes += 1000;
+						lxfEndtime(objlist,objlist.length,thistimes);										   
+			},1000);
+
+ }//fun
+  
+  
+$(function(){
+	$.ajaxSetup({
+		async : false
+	});
+	var divlist = $(".timeall");
+	var divarr  = new Array();
+	
+		divlist.each(function(i,v){
+			divarr[i] = new Array();
+			divarr[i]['obj'] = $(this);
+			divarr[i]['endtimeto'] = $(this).attr("endtimeto");
+			divarr[i]['shopid']=$(this).attr("shopid");
+		});
+		
+	divlist = null;	
+    lxfEndtime(divarr,divarr.length,{wc:fun:time()}000);
+});
+</script>
+<div class="autoCon">
+	<div id="divTimerItems" class="showCon" style="display:block;">
+		<ul>        	
+            {wc:loop $jinri_shoplist $shop}
+            {wc:php:start}
+            	$shop['time_H'] = abs(date("H",$shop['xsjx_time']));
+            {wc:php:end}         
+            {wc:if $shop['q_user_code'] && $shop['q_showtime'] == 'N'} 	
+			<li class="autolist autolistEnd jinrishop">         
+				<div class="syTimeEnd">已揭晓</div>
+				<div class="jxTime">{wc:$shop['time_H']}点揭晓</div>
+				<div class="autolistC">
+					<div class="pic">
+						<a href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank"><img src="{G_UPLOAD_PATH}/{wc:$shop['thumb']}"></a>
+					</div>
+					<p class="name"><a href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">(第{wc:$shop['qishu']}期){wc:$shop['title']}</a></p>
+					<p class="money">价值：<span class="rmb">{wc:$shop['money']}</span></p>
+					<div class="Progress-bar">
+						<p><span style="width:{wc:fun:width($shop['canyurenshu'],$shop['zongrenshu'],100)}%;"></span></p>
+						<ul class="Pro-bar-li">
+							<li class="P-bar01"><em>{wc:$shop['canyurenshu']}</em>已参与人次</li>
+							<li class="P-bar02"><em id="Em1">{wc:$shop['zongrenshu']}</em>总需人次</li>
+							<li class="P-bar03"><em id="Em2">{wc:$shop['zongrenshu']-$shop['canyurenshu']}</em>剩余人次</li>
+						</ul>
+					</div>					
+				</div>
+          	
+				<div class="listEndInfo">
+					<div class="uInfo">
+					<a class="fl" rel="nofollow" href="{WEB_PATH}/uname/{wc:$shop['q_uid']}" target="_blank">
+						<img border="0" src="{G_UPLOAD_PATH}/{wc:fun:get_user_key($shop['q_uid'],'img')}" alt="">
+					</a>
+					<p>恭喜<a href="{WEB_PATH}/uname/{wc:fun:idjia($shop['q_uid'])}" target="_blank">{wc:fun:get_user_name($shop['q_uid'])}</a>获得<br>幸运{wc:fun:_cfg('web_name_two')}码：<span class="orange">{wc:$shop['q_user_code']}</span><br>揭晓时间：<span>
+                {wc:fun:date("Y-m-d H:i:s",$shop['q_end_time'])}.000
+                </span></p></div></div>        
+			</li>
+            {wc:else}
+            <li name="normalItem" class="autolist jinrishop">
+				<div name="timerItem"  class="AnnTime10 syTime timeall" shopid="{wc:$shop['id']}" endtimeto="{wc:$shop['xsjx_time']}000" lxfday="no"></div>
+				<div class="jxTime">{wc:$shop['time_H']}点揭晓</div>
+				<div class="autolistC">
+					<div class="pic">
+						<a rel="nofollow" href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">
+                        <img src="{G_UPLOAD_PATH}/{wc:$shop['thumb']}"></a></div>
+					<p class="name">
+						<a href="{WEB_PATH}/goods/{wc:$shop['id']}"  target="_blank">(第{wc:$shop['qishu']}期){wc:$shop['title']}</a></p>
+					<p class="money">
+						价值：<span class="rmb">{wc:$shop['money']}</span></p>
+					<div class="Progress-bar">
+						<p><span style="width:{wc:fun:width($shop['canyurenshu'],$shop['zongrenshu'],100)}%;"></span></p>
+						<ul class="Pro-bar-li">					
+                            <li class="P-bar01"><em>{wc:$shop['canyurenshu']}</em>已参与人次</li>
+							<li class="P-bar02"><em id="Em1">{wc:$shop['zongrenshu']}</em>总需人次</li>
+							<li class="P-bar03"><em id="Em2">{wc:$shop['zongrenshu']-$shop['canyurenshu']}</em>剩余人次</li>
+						</ul>
+					</div>
+                    {wc:if $shop['zongrenshu']==$shop['canyurenshu']}
+                    <div class="ashowM"> <a class="nowBtnEnd">已结束</a> </div>
+                    {wc:else}
+					<div class="ashowM"><a class="nowBtn" href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">立即参与</a></div>
+                    {wc:if:end}
+				</div>				
+			</li>		         
+            {wc:if:end}
+            {wc:loop:end}
+            </ul> 
+	</div>
+           
+	<div id="divWillItems" class="showCon hidden" style="display: none;">
+		<ul>		
+        	{wc:loop $minri_shoplist $shop}
+            {wc:php:start}
+            	$shop['time_H'] = abs(date("H",$shop['xsjx_time']));
+            {wc:php:end}  	
+			<li class="autolist minrishop" style="padding-top:3px;">
+				<div class="jxTime">{wc:$shop['time_H']}点揭晓</div>
+				<div class="autolistC">
+					<div class="pic"><a rel="nofollow" href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">
+						<img src="{G_UPLOAD_PATH}/{wc:$shop['thumb']}"></a></div>
+					<p class="name">
+						<a href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">(第{wc:$shop['qishu']}期){wc:$shop['title']}</a></p>
+					<p class="money">
+						价值：<span class="rmb">{wc:$shop['money']}</span></p>
+					<div class="Progress-bar">
+						<p><span style="width:{wc:fun:width($shop['canyurenshu'],$shop['zongrenshu'],100)}%;"></span></p>
+						<ul class="Pro-bar-li">
+						 <li class="P-bar01"><em>{wc:$shop['canyurenshu']}</em>已参与人次</li>
+							<li class="P-bar02"><em id="Em1">{wc:$shop['zongrenshu']}</em>总需人次</li>
+							<li class="P-bar03"><em id="Em2">{wc:$shop['zongrenshu']-$shop['canyurenshu']}</em>剩余人次</li>
+						</ul>
+					</div>
+					<div class="ashowM"><a class="nowBtn"  href="{WEB_PATH}/goods/{wc:$shop['id']}" target="_blank">立即参与</a></div>
+				</div>
+			</li>
+		{wc:loop:end}
+		</ul>
+	</div>
+	<div class="autoOld">
+		<p class="dsjx">
+			往期回顾</p>
+		<span class="autoOldMore"><a href="#" target="_blank">更多 <em>&gt;&gt;</em></a></span>
+		<div class="autoOldC">
+			
+            		{wc:loop $endshoplist $eshop}
+					<ul class="autoOldlist">
+						<li class="pInfo">
+							<dt><a rel="nofollow" href="{WEB_PATH}/dataserver/{wc:$eshop['id']}" target="_blank">
+								<img border="0" src="{G_UPLOAD_PATH}/{wc:$eshop['thumb']}" alt="三星（Samsung）840系列MZ-7TD120BW 120G固态硬盘"></a></dt>
+							<dt class="title"><a href="{WEB_PATH}/dataserver/{wc:$eshop['id']}" target="_blank">
+								{wc:$eshop['title']}</a></dt>
+							<dd>
+								<p class="Det_money">
+								价值：<span class="rmbgray">{wc:$eshop['money']}</span></p>
+							</dd>
+							<i></i></li>
+						<li class="pro-barw">
+						<div class="Progress-bar">
+							<p><span style="width:100%;"></span></p>
+                            <ul class="Pro-bar-li">
+                             <li class="P-bar01"><em>{wc:$eshop['canyurenshu']}</em>已参与人次</li>
+                                <li class="P-bar02"><em id="Em1">{wc:$eshop['zongrenshu']}</em>总需人次</li>
+                                <li class="P-bar03"><em id="Em2">{wc:$eshop['zongrenshu']-$eshop['canyurenshu']}</em>剩余人次</li>
+                            </ul>
+						</div>
+						</li>
+						<li class="uInfo">
+							<dt><a rel="nofollow" href="{WEB_PATH}/uname/{wc:fun:idjia($eshop['q_uid'])}" target="_blank">
+								<img border="0" src="{G_UPLOAD_PATH}/{wc:fun:get_user_key($eshop['q_uid'],'img')}"></a></dt>
+							<dt class="uget">恭喜<a href="{WEB_PATH}/uname/{wc:fun:idjia($eshop['q_uid'])}" target="_blank">{wc:fun:get_user_name($eshop['q_uid'])}</a>获得<br>
+								幸运{wc:fun:_cfg('web_name_two')}码：<span class="orange">{wc:$eshop['q_user_code']}</span><br>
+								揭晓时间：<span>{wc:fun:date("Y-m-d H",$eshop['q_end_time'])}</span></dt>
+						</li>
+					</ul>			
+					{wc:loop:end}
+				
+		</div>
+	</div>
+	<div class="autoRule">
+		<a name="regular" id="regular"></a>
+		<p class="dsjx">
+			限时揭晓规则</p>
+		<div class="autoOldC">
+			<ul>
+				<li>1、所有限时揭晓商品，不管已参与人次是否达到总需参与人次，都按截止时间准时揭晓。</li>
+				<li>2、如果计算出的{wc:fun:_cfg('web_name_two')}码未被购买，则取差值最小的{wc:fun:_cfg('web_name_two')}码作为幸运{wc:fun:_cfg('web_name_two')}码。</li>
+				<li>3、如果有2个{wc:fun:_cfg('web_name_two')}码最小差值相等，则取大值作为最终幸运{wc:fun:_cfg('web_name_two')}码。</li>
+				<li>4、限时揭晓商品不参与差价送福分活动且晒单不可再获得1000福分奖励。</li>
+				<li>5、限时揭晓的幸运{wc:fun:_cfg('web_name_two')}码计算方式：</li>
+				<li>&nbsp; 1) 限时揭晓商品取截止时间前网站所有商品100条购买时间记录。</li>
+				<li>&nbsp; 2) 时间按时、分、秒、毫秒依次排列组成一组数值。</li>
+				<li>&nbsp; 3) 将这100组数值之和除以商品总需参与人次后取余数，余数加上10,000,001即为“幸运{wc:fun:_cfg('web_name_two')}码”。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{wc:templates "index","footer"}

@@ -1,0 +1,150 @@
+<?php defined('G_IN_SYSTEM')or exit('No permission resources.'); ?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>手机版_<?php echo _cfg('web_name_two'); ?></title>
+<meta name="keywords" content="<?php if(isset($keywords)): ?><?php echo $keywords; ?><?php  else: ?><?php echo _cfg("web_key"); ?><?php endif; ?>" />
+<meta name="description" content="<?php if(isset($description)): ?><?php echo $description; ?><?php  else: ?><?php echo _cfg("web_des"); ?><?php endif; ?>" />
+  
+    <link rel="stylesheet" type="text/css" href="<?php echo G_WEB_PATH; ?>/app/css/Comm.css?date=20140731" />
+<!--[if IE 6]>
+    <script type="text/javascript" src="<?php echo G_WEB_PATH; ?>/js/iepng.js"></script>
+    <script type="text/javascript">
+        EvPNG.fix('span.Hicon,a.F-icon-guest s,a.F-icon-gray s,s.u-banner-close,.F-number-l,.F-number-r,.M-nav-help a s,.g-good-faith li s,a.pre,a.next,.u-topic-icon i,.u-topic-icon s,.M-security a s,.roll_close a');
+    </script>
+<![endif]-->
+   
+    <link rel="stylesheet" type="text/css" href="<?php echo G_WEB_PATH; ?>/app/css/layout.css?date=20141013" />
+    <script language="javascript" type="text/javascript" src="<?php echo G_WEB_PATH; ?>/app/js/JQuery132.js"></script>
+    <script language="javascript" type="text/javascript" src="<?php echo G_WEB_PATH; ?>/app/js/mobileFun.js"></script>
+    <style type="text/css">
+        html {
+            overflow-y:hidden;
+        }
+	.codep{
+		background: url(./images/qrcode.png) no-repeat;
+		width: 134px;
+		height: 134px;
+		margin: 39px auto 0;
+		border: 1px solid #eee
+	}
+    </style>
+</head>
+<body style="overflow-y: hidden">
+    <div class="tContent">
+
+        <div class="code-box">
+            <div class="code-wrapper">
+                <div id="divTip" class="part1_text">
+                    <h4>客户端 V1.8</h4>
+                    <h3>全新体验  发现更多精彩</h3>
+                </div>
+                <div class="codeCon">
+                    <div class="code"></div>
+                    <p>
+                        <span>安卓手机扫描二维码下载</span>
+                  iPhone请访问触屏版<?php echo G_WEB_PATH; ?></p>
+                    <div class="download_btn">
+                        <a href="../app/app.apk" title="立即下载"></a>
+                    </div>
+                </div>
+
+		
+            </div>
+        </div>
+
+        <div class="app_content">
+            <div id="divBox" class="part-box">
+
+                <div id="part1" class="part bgcolor1">
+                    <div id="divHead" class="tHeader">
+                        <div class="tHead">
+                            <ul>
+                                <li class="tLogo">
+                                    <a href="<?php echo G_WEB_PATH; ?>" class="tHome">
+                                        <img alt="" src="<?php echo G_UPLOAD_PATH; ?>/logo.gif" />
+                                    </a>
+                                    <img alt="" src="app/images/line.gif" class="line" />
+                                    <a href="/?/go/index/app" title="手机版" class="txt">手机版</a></li>
+                                <li class="tNav">
+                                 <a href="<?php echo G_WEB_PATH; ?>/?/go/index/app" title="手机版" class="current">手机版  </a>
+                                    <a                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phone-wrapper">
+                        <div class="stars1" style="display: none;"></div>
+                        <div class="stars2" style="display: none;"></div>
+                        <div class="stars3" style="display: none;"></div>
+                        <div class="stars4" style="display: none;"></div>
+                        <div class="stars5" style="display: none;"></div>
+                        <div class="stars6" style="display: none;"></div>
+                        <div class="stars7" style="display: none;"></div>
+                        <div class="part1_phone"></div>
+                        <div class="part1_search" style="display: none;"></div>
+                        <div class="part1_card" style="display: none;"></div>
+                        <div class="part1_wx" style="display: none;"></div>
+                        <div class="part1_circle1" style="display: none;"></div>
+                        <div class="part1_circle2" style="display: none;"></div>
+                        <div class="part1_pic1" style="display: none;"></div>
+                        <div class="part1_pic2" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div id="part2" class="part bgcolor2" >
+                    <div class="phone-wrapper">
+                        <div class="part2_land"></div>
+                        <div class="part2_packs" style="display: none;"></div>
+                        <div class="part2_phone" style="display: none;"></div>
+                        <div class="part2_shape" style="display: none;"></div>
+                        <div class="part2_people" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div id="part3" class="part bgcolor3">
+                    <div class="phone-wrapper">
+                        <div class="part3_phone"></div>
+                        <div class="part3_balloons" style="display: none;"></div>
+                        <div class="part3_people" style="display: none;"></div>
+                        <div class="part3_search" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div id="part4" class="part bgcolor4">
+                    <div class="phone-wrapper">
+                        <div class="part4_phone"></div>
+                        <div class="part4_clouds" style="display: none;"></div>
+                        <div class="part4_card" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div id="part5" class="part bgcolor5">
+                    <div class="phone-wrapper">
+                        <div class="part5_clouds" style="display: none;"></div>
+                        <div class="sun" style="display: none;"></div>
+                        <div class="part5_land"></div>
+                        <div class="part5_phone" style="display: none;"></div>
+                        <div class="part5_people" style="display: none;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="divPage" class="round_current">
+            <ul>
+                <li class="active"><a href="javascript:;"></a></li>
+                <li><a href="javascript:;"></a></li>
+                <li><a href="javascript:;"></a></li>
+                <li><a href="javascript:;"></a></li>
+                <li><a href="javascript:;"></a></li>
+            </ul>
+        </div>
+
+        <div id="divReturnTop" class="return_top">
+            <a href="javascript:;"></a>
+        </div>
+
+    </div>
+    

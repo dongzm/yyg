@@ -1,0 +1,31 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-topic.css"/>
+<div class="R-content">
+	<div class="member-t">
+		<h2>加入的圈子</h2> <span id="spanCount">({wc:fun:count($group)})</span>
+	</div>
+	<div class="groups-list clearfix">
+		{wc:if $group==null}
+		<div class="tips-con"><i></i>您还未有发表话题哦</div>
+		{wc:else}
+			<ul id="ulGroupList">
+			{wc:loop $group $v}
+			<li class="">
+				<div class="groups-img"><a target="_blank" href="{WEB_PATH}/group/show/{wc:$v['id']}" class="fl-img"><img src="{G_UPLOAD_PATH}/{wc:$v['img']}" border="0"></a></div>
+				<div class="groups-info">
+					<p class="groups-name"><a target="_blank" href="{WEB_PATH}/group/show/{wc:$v['id']}" rel="nofollow" class="blue"><b>{wc:$v['title']}</b></a></p>
+					<p class="groups-class gray02">成员：{wc:$v['chengyuan']}&nbsp;&nbsp;&nbsp;&nbsp;话题：{wc:$v['tiezi']}</p>
+					<p class="groups-intro gray02">{wc:$v['jianjie']}</p>
+				</div>
+			</li>
+			{wc:loop:end}
+			</ul>
+		{wc:if:end}
+	</div>
+	<div id="divPageNav" class="page_nav"></div>
+</div>
+
+</div>
+{wc:templates "index","footer"}

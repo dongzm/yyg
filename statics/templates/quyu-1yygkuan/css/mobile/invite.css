@@ -1,0 +1,100 @@
+@charset "utf-8";
+.R-content{width:100%;}
+.R-content .member-t{border-bottom: 1px solid #ededed; padding-left: 1em;}
+.R-content .success-invitation{border:1px solid #f5f5f5; background: #fcfcfc;line-height: 22px; padding: 10px 0px 20px 30px;}
+.R-content .success-invitation button{ background: none;}
+.R-content .success-invitation #txtInfo{border:1px solid #ddd; line-height: 18px;}
+.R-content .success-invitation #d_clip_button{ margin-left: 5px; padding: 0 10px 0 10px;line-height: 18px;background: none;}
+.R-content .get-tips{border:1px solid #FEDD98;background: #FFFBE3;padding: 5px;}
+.R-content .list-tab{width: 100%; margin-top: 10px;}
+.R-content .list-tab .w200{width: 25%;}
+.R-content .list-tab .w20{width: 20%;}
+.R-content .list-tab .w40{width: 40%;}
+.R-content .list-tab .w10{width: 10%;}
+.R-content .list-tab .w35{width: 35%;}
+.R-content .list-tab .w15{width: 15%;}
+.R-content .list-tab ul{ clear: both;width:100%;}
+.R-content .list-tab .listTitle li{border-bottom: 1px solid #eee;border-top: 1px solid #eee; background: #f9f9f9; line-height: 18px;}
+.R-content .list-tab ul li{ float: left; text-align: center;}
+.R-content .list-tab .tips-con{ width: 100%; text-align: center; line-height: 100px;}
+.R-content .total{border:1px solid #ffdd99;background: #fffce2; margin-top: 5px; line-height: 22px; padding: 5px;}
+.R-content .total dl dd{ float: left;}
+.R-content .total dl dt{ clear: both;}
+.R-content .total a{border-radius: 2px;line-height: 19px; padding: 0 19px;}
+.R-content .bluebut{border:1px solid #1ba3fa;color:#fff;background: #49b8ff; margin-left: 10px; padding: 2px;}
+.R-content .orangebut{border:1px solid #f65802;color:#fff;background: #ff6600;}
+
+.subMenu {
+    width:100%;
+    border-bottom:#44b6ff 1px solid;
+    margin-top:10px;
+    overflow:hidden;
+    position:relative;
+}
+.subMenu a {
+    float:left;
+    color:#43b6ff;
+    font-size:14px;
+    font-family:"宋体";
+    background-position:0 -47px;
+    padding:0 20px;
+    height:29px;
+    line-height:29px;
+    text-align:center;
+    border:#e0e0e0 1px solid;
+    border-left:0 none;
+    border-bottom:0 none;
+    position:relative;
+    cursor:pointer;
+}
+.subMenu a:hover {
+    color:#43b6ff;
+}
+.subMenu a i {
+    background:#f60;
+    color:#fff;
+    position:absolute;
+    top:1px;
+    margin-left:-1px;
+    height:9px;
+    font-size:12px;
+    line-height:9px;
+    border-radius:2px;
+    padding:2px;
+    font-family:Arial;
+    font-weight:normal;
+}
+.subMenu a.current {
+    background:#44b6ff;
+    color:#fff;
+    font-weight:bold;
+    border-top:0 none;
+    padding:0 20px;
+    height:30px;
+    line-height:30px;
+}
+.subMenu a.current:hover {
+    color:#fff;
+}
+.subMenu a.current2 {
+    border-left:1px solid #e0e0e0;
+    cursor:pointer;
+}
+
+.Apply-con{width:100%;margin-top:20px;}
+.Apply-con dl{display:inline-block;width:100%;margin-top:10px;clear: both;}
+.Apply-con dt{width:25%;line-height:27px;color:#666;float:left;text-align:right;}
+.Apply-con dd{width:73%;float:left;line-height:27px;}
+.Apply-con dd b{font-weight:normal;float:left;margin-right:5px;}
+.Apply-con dd em{display:block;width:15px;height:15px;background-repeat:no-repeat;background-position:-102px -99px;
+    float:left;position:relative;top:6px;left:3px;margin-right:8px;}
+.Apply-con .inp-money,.Apply-con .input-txt{height:27px;line-height:25px;padding:0 3px;border-left:1px solid #C2C2C2;
+    border-top:1px solid #C2C2C2;border-right:1px solid #E1E1E1;border-bottom:1px solid #E1E1E1;font-size:14px;vertical-align:middle;display:block;float:left;}
+.txtAri{font-family:Arial,Helvetica,sans-serif;}
+.Apply-con .inp-money{width:20%;vertical-align:middle;margin-right:5px;}
+.Apply-con .input-txt{width:50%;}
+.Apply-button{margin-top:15px; width: 100%; text-align: center;}
+.Apply-button a{font-weight:bold;}
+.Apply-con span.orange{font-weight:bold;font-family:Arial,Helvetica,sans-serif;font-size:14px;}
+.Apply-con span.oran{color:#f60;overflow:hidden;display:inline-block;height:25px;margin:0;padding:0;}
+.recharge{width:750px;padding-left:30px;}

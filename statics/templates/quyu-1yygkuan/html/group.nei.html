@@ -1,0 +1,126 @@
+{wc:templates "index","header"}
+<div class="groups-stripes"></div>
+<div class="layout980">
+	<div class="Topic-left">	
+		<div class="detail-Ltop">
+			<div class="detail-Himg">
+				<a href="{WEB_PATH}/group/show/{wc:$quanzi['id']}" class="fl-img"><img src="{G_UPLOAD_PATH}/{wc:$quanzi['img']}" border="0" ></a>
+			</div>
+			<div class="detail-HC"><div class="detail-Htit gray03">
+				<h2><a id="thisGroupName" href="{WEB_PATH}/group/show/{wc:$quanzi['id']}" class="orange">{wc:$quanzi['title']}</a></h2> 
+				<span class="return"><a href="{WEB_PATH}/group/show/{wc:$quanzi['id']}" class="gray02">&lt;&lt; 返回圈子</a></span>
+				</div>
+				<p class="detail-Hinfo gray02">成员：
+				<span class="gray01">{wc:$quanzi['chengyuan']}</span>&nbsp;&nbsp;&nbsp;话题：
+				<span class="gray01">{wc:$quanzi['tiezi']}</span>&nbsp;&nbsp;&nbsp;创建时间：
+				<span class="gray01">{wc:fun:date("Y-m-d H:i:s",$quanzi['time'])}</span></p>
+			</div>
+		</div>
+		<div id="divTopicShow" class="detail-content">
+			<div class="detail-Ctitle">
+				<div class="detail-Ctimg">
+					<a href="{WEB_PATH}/uname/{wc:fun:idjia($tiezi['hueiyuan'])}" class="fl-img" type="showCard">
+					{wc:if userid($tiezi['hueiyuan'],'img')==null}
+					<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+					{wc:else}
+					<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($tiezi['hueiyuan'],'img')}" width="50" height="50" border="0"/>
+					{wc:if:end}				
+					</a>
+				</div>
+				<div class="detail-Ctl">
+					<p class="detail-tit gray">{wc:$tiezi['title']}
+						{wc:if $tiezi['zhiding']=='Y'}
+						<i class="zhiding"></i>&nbsp;
+						{wc:if:end}
+					
+						<i id="JingHua" class="jing" style="display:none;"></i></p>
+					<div class="detail-Ctit gray03"><a href="{WEB_PATH}/uname/{wc:fun:idjia($tiezi['hueiyuan'])}" class="blue" type="showCard">{wc:fun:userid($tiezi['hueiyuan'],'username')}</a> 
+						<span class="class-icon07"></span> 
+						<span class="time gray02">{wc:fun:date("Y-m-d H:i:s",$tiezi['time'])}</span>&nbsp;&nbsp;
+						<span class="gray03">人气({wc:$tiezi['dianji']})</span>
+					</div>
+				</div>
+			</div>
+			<div id="divTopicContent" class="detail-Con gray01">{wc:$tiezi['neirong']}</div>
+		</div>
+
+		<div id="divAdminPower" class="detail-admin" style="display:none;">
+			<a href="javascript:;" id="btnSetGood" class="blue Control01"><s></s>话题加精</a>
+			<a id="btnUnshow" href="javascript:;" class="blue Control02"><s></s>屏蔽该话题</a>
+			<a href="javascript:;" id="btnCancelGood" class="blue Control03" style="display:none;"><s></s>取消加精</a>
+		</div>
+		<div class="Comment_main" id="commentMain" style="display: block;">
+			<div class="Comment-date">
+				<span class="gray02">共 <i id="totalNum" class="orange">{wc:$total}</i> 条回复</span> 
+				<em><a href="javascript:;" class="blue">回复</a></em>
+			</div>
+			{wc:if $total==0}
+			<div class="tips-con"><i></i>暂无回复，快抢沙发吧！</div>
+			{wc:else}
+			{wc:loop $hueifu $hf}
+			<div class="Comment_box_con">
+				<div class="User_head"><a type="showCard" href="{WEB_PATH}/uname/{wc:fun:idjia($hf['hueiyuan'])}" class="fl-img">
+				{wc:if userid($hf['hueiyuan'],'img')==null}
+				<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+				{wc:else}
+				<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($hf['hueiyuan'],'img')}" width="50" height="50" border="0"/>
+				{wc:if:end}	
+				</a></div>
+				<div class="Comment_con">
+					<div class="Comment_User"><b></b><a type="showCard" href="{WEB_PATH}/uname/{wc:fun:idjia($hf['hueiyuan'])}" class="blue">{wc:fun:userid($hf['hueiyuan'],'username')}</a></div>
+					<div class="C_summary gray02">{wc:$hf['neirong']}
+						<br/>
+						<span class="gray03">{wc:fun:date("Y-m-d H:i:s",$hf['time'])}</span>
+					</div>
+					<div class="C_detail"><a name="linkReply" href="javascript:;" class="blue"><!-- 回复 --></a></div>
+					<div name="ReplyList" class="qcomment_reply_list_module"></div>				
+				</div>
+			</div>
+			{wc:loop:end}
+			<div class="page_nav">
+				{wc:if $total>$num}
+				<div class="pagesx">{wc:page:two}</div>
+				{wc:if:end}
+			</div>
+			{wc:if:end}
+		</div>
+		
+		<!--回复-->
+		{wc:if $quanzi['huifu']=='Y'}
+		<div class="Comment_Box clearfix">
+			<div class="Comment-pic">
+				{wc:if userid($tiezi['hueiyuan'],'img')==null}
+				<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+				{wc:else}
+				<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($tiezi['hueiyuan'],'img')}" width="50" height="50" border="0"/>
+				{wc:if:end}	
+			</div>
+			<div class="Comment_form">
+				<div class="Comment_textbox">
+					{wc:if $uid}
+					<form action="{WEB_PATH}/group/group/hueifuinsert" method="post">
+					<textarea id="hueifucontent" class="textarea01" name="hueifu" style="display: block;border:1px solid #C2C2C2; height:150px; resize:none;"></textarea>
+					<input value="{wc:$tiezi['id']}" name="tzid" class="hidden"/>
+					<input value="{wc:$quanzi['id']}" name="qzid" class="hidden"/>
+					<div  style="line-height:25px;display: inline-block;padding:0px;margin-top:5px;">
+							<span style=" float:right"><img onclick="this.src = this.src + '/0'" src="{WEB_PATH}/api/checkcode/image/60_25_0_0_4"/></span>
+							<span style="color:#aaa;float:left">验证码: </span><input type="text" name="group_code" style="width:80px;height:20px;" />							
+					</div>
+					<div class="Comment_but"><input type="submit" name="submit" id="btnSubmitMsg" class="reply_unbotton" value="立即发送" /></div>
+					</form>
+					{wc:else}
+					<div class="Comment_login" id="notLogin">
+						请您<a class="blue" href="{WEB_PATH}/member/user/login" id="replyLoginBtn">登录</a>或<a class="blue" href="{WEB_PATH}/member/user/register">注册</a>后再回复评论							
+					</div>
+					{wc:if:end}
+				</div>
+			</div>
+		</div> 
+		{wc:else}
+		<div class="tips-con"><i></i>该圈子已设置不可回复!</div>
+		{wc:if:end}
+		<!--回复-->
+	</div>
+	{wc:templates "group","right"}
+</div>
+ {wc:templates "index","footer"}

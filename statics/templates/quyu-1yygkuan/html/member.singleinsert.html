@@ -1,0 +1,146 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+<script type="text/javascript" charset="utf-8" src="{G_PLUGIN_PATH}/uploadify/jquery.uploadify-3.1.min.js"></script>
+<link rel="stylesheet" href="{G_PLUGIN_PATH}/uploadify/uploadify.css" type="text/css"> 
+
+<!--a-->
+<script type="text/javascript">
+var editurl=Array();
+editurl['editurl']="{G_PLUGIN_PATH}/ueditor/";
+editurl['imageupurl']="{WEB_PATH}/{G_ADMIN_DIR}/ueditor/upimage/";
+editurl['imageManager']="{WEB_PATH}/{G_ADMIN_DIR}/ueditor/imagemanager";
+</script>
+<script type="text/javascript" charset="utf-8" src="{G_PLUGIN_PATH}/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="{G_PLUGIN_PATH}/ueditor/ueditor.all.min.js"></script>
+
+{wc:templates "member","left"}
+<script>
+//上传文件
+$(function(){
+    $('#sd_file').uploadify({
+    	'auto'     : false,
+    	'removeTimeout' : 1,
+        'swf'      : '{G_PLUGIN_PATH}/uploadify/uploadify.swf',
+        'uploader' : '{WEB_PATH}/member/home/singphotoup',
+        'method'   : 'post',
+		'buttonText' : '选择图片',
+		'buttonImage': '{G_PLUGIN_PATH}/uploadify/select.png',
+		'width': 120,
+		'height': 30,
+        'multi'    : true,
+		'uploadLimit' : 10,
+		'queueID'         : 'fileQueue',
+        'fileTypeDesc' : 'Image Files',
+        'fileTypeExts' : '*.gif; *.jpg; *.png',
+        'fileSizeLimit' : '500KB',
+
+		'formData'        : {
+			'uid': '{wc:$uid}',			
+			'ushell':'{wc:$ushell}'
+		},	
+		'onUploadSuccess' : function(file, data, response){		
+			$(".fileWarp ul").append(SetImgContent(data));
+			SetUploadFile();
+		}
+    });
+});
+function sdUpload(){
+		$('#sd_file').uploadify('settings','formData',{'typeCode':document.getElementById('id_file').value});
+		$('#sd_file').uploadify('upload','*')
+	}
+//显示上传的图片
+function SetImgContent(data){
+	var sLi = "";
+		sLi += '<li>';
+		sLi += '<img src="{G_UPLOAD_PATH}/' + data + '" width="100" height="100" />';
+		sLi += '<input type="hidden" name="fileurl_tmp[]" value="' + data + '">';
+		sLi += '<a href="javascript:;">删除</a>';
+		sLi += '</li>';
+	return sLi;
+}
+
+//删除上传元素DOM并清除目录文件
+function SetUploadFile(){
+	$(".fileWarp ul li").each(function(l_i){
+		$(this).attr("id", "li_" + l_i);
+	})
+	$(".fileWarp ul li a").each(function(a_i){
+		$(this).attr("rel", "li_" + a_i);
+	}).click(function(){
+		$.get(
+			'{WEB_PATH}/member/home/singdel',
+			{action:"del", filename:$(this).prev().val()},
+			function(){}
+		);
+		$("#" + this.rel).remove();
+	})
+}
+</script>
+<style>
+.R-content .sd_lilie{display:block; width:780px; margin:10px 0 10px 0; float:left;}
+.R-content .sd_lilie .sd_span{font-size:14px; float:left; display:block;width:70px;}
+#sd_text{border:1px solid #ccc; width:450px; height:30px; padding:0 0 0 5px;}
+#sd_textarea{width:500px; height:150px; border:1px solid #ccc; resize:none; padding:5px;}
+#sd_file{ float:left;}
+#fileQueue{display: block; margin: 30px 0 0 0;}
+#fileQueue div{ margin:5px 0 0 0;}
+#sd_submit{padding:5px 10px; float:right; border-right:1px solid #666; border-bottom:1px solid #666;}
+.button{ margin:5px 0 0 0; float:left;padding:3px 7px; float:left; border-right:1px solid #666; border-bottom:1px solid #666;}
+.fileWarp{ width:710px;  float:left;}
+.fileWarp ul li{ float:left;  margin-right:10px;}
+.fileWarp ul li a{ display:block; height:25px; width:100px; text-align:center; background-color:#eee; color:#f60;line-height:25px;}
+</style>
+<div class="R-content">
+	<div class="subMenux" style="height:50px;line-height:50px;">
+		<span>添加晒单</span>
+		<a style="float:right;" href="{WEB_PATH}/member/home/singlelist" class="blue">返回晒单</a>
+	</div>
+	<form  action="#" method="post">	
+		<div class="sd_lilie">
+			<span class="sd_span">标题：</span>
+			<input id="sd_text" type="text" name="title" />
+		</div>
+		<div class="sd_lilie">
+			<span class="sd_span">内容：</span>
+			<!--textarea id="sd_textarea" name="content" ></textarea-->
+			<div style="float: left;">
+				<script name="content" id="myeditor" type="text/plain"></script>
+            	<style>
+				.content_attr {
+					border: 1px solid #CCC;
+					padding: 5px 8px;
+					background: #FFC;
+					margin-top: 6px;
+					width:915px;
+				}
+				</style>
+				<script type="text/javascript">
+				//实例化编辑器
+				UEDITOR_CONFIG.toolbars = [["source","fontfamily","fontsize","bold","italic","underline","backcolor","link","unlink","justifyleft","justifycenter","justifyright","justifyjustify","insertunorderedlist","insertorderedlist",]];
+				UEDITOR_CONFIG.initialFrameWidth = 600;
+				UEDITOR_CONFIG.initialFrameHeight = 400;
+				var ue = UE.getEditor('myeditor');
+				ue.addListener('ready',function(){
+					this.focus()
+				});
+				</script>
+			</div>
+		</div>
+		<div class="sd_lilie">
+			<span class="sd_span">晒图：</span>
+			<div style="float:left; width:400px;">
+				<input id="sd_file" type="file" name="upimg"/>				
+				<div style="width:710px; float:left;"></div>
+				<input type="hidden" name="imglist" id="id_file" />
+				<input type="button"  class="button" onClick="sdUpload()" value="上传图片" />
+				<div class="fileWarp"><div id="fileQueue"></div><ul></ul></div>			
+			</div>
+		</div>
+		<div class="sd_lilie" style="width:580px;">
+		<input id="sd_submit" name="submit" type="submit" value="确认添加" />
+		</div>
+	</form>
+</div>
+
+</div>
+{wc:templates "index","footer"}

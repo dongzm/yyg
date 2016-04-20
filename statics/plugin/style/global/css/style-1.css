@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+/* 后台全局CSS*/
+
+body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,blockquote,th,td,p,span{margin:0px;padding:0px;}
+dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,blockquote,th,td,p,span{margin:0px;padding:0px;}
+a,input,button,select,textarea{outline:none}textarea{resize:none}li{list-style:none}img{border:none}em,i{font-style:normal}
+H1,H2,H3,H4,H5,H6,H7,H8,H9{ display:inline;}/*内联元素*/
+table{border-collapse:collapse;border-spacing:0;}
+A{color:#000;TEXT-DECORATION: none;blr:expression(this.onFocus=this.blur())}
+A:hover{text-decoration:underline;color:#1261d7;}
+
+*{margin:0px;padding:0px;}
+div{ display:block;}
+body{background-color:#fff; font-size:12px; }
+/*html{ overflow:hidden;}*/
+body,html{font: 12px/1.5 tahoma,arial,宋体b8b\4f53,sans-serif;}
+
+
+
+/*圈子*/
+.mgr_header {
+    border-bottom: 1px solid #E3EFF3;
+    height: 31px;
+    line-height: 31px;
+}
+.mgr_header .title, .home_header .title {
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 8px 0 0px;
+}
+.mgr_header .reload, .home_header .reload {
+    float: right;
+    margin-right: 10px;
+}
+.mgr_table .thead {
+    background: none repeat scroll 0 0 #F2FAFC;
+    font-weight: bold;
+}
+.mgr_table td {
+    border-bottom: 1px solid #EBEBEB;
+}
+
+
+.dialog_content{ float:left; padding:20px;}
+.dialog_content ul{float:left; }
+.dialog_content ul li{ margin:15px 0 0 0; }
+.dialog_content ul li em{ display:block; width:100px; height:24px; text-align:right; float:left;}
+.dialog_content ul li font{ font-size:12px; color:#f00; padding:0 0 0 10px;}
+.input_text{ width:240px; height:24px; border:1px solid #ccc;}
+.textarea{ width:300px; height:80px; border:1px solid #ccc;}
+.submit{ width:73px; height:35px; color:#fff; font-weight:bold; background: url("../image/arrow_button.png") no-repeat 0 -112px; border:0;}
+
+
+.fileWarp{ float:left; width:600px; height:200px; border:1px solid #ccc; padding:10px; overflow-y:auto;}
+.fileWarp ul{ float:left;}
+.fileWarp li{ float:left; margin:10px;}
+
+
+
+
+
+
+

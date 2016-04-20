@@ -1,0 +1,69 @@
+<link href="{G_TEMPLATES_STYLE}/css/groups.css" rel="stylesheet" type="text/css" />
+<div class="groups-right">
+	<div class="groups-head">
+	{wc:if uidcookie('uid')}	
+	<div class="grhead-img"><a href="{WEB_PATH}/uname/{wc:fun:idjia(uidcookie('uid'))}" class="fl-img">		
+		{wc:if userid(uidcookie('uid'),'img')==null}
+		<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+		{wc:else}
+		<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid(uidcookie('uid'),'img')}" width="50" height="50" border="0"/>
+		{wc:if:end}	
+	</div>
+	<div class="grhead-info">
+		<p class="grhead-name"><a href="{WEB_PATH}/uname/{wc:fun:idjia(uidcookie('uid'))}" class="gray" >{wc:fun:userid(uidcookie('uid'),'username')}</a></p>
+		<p class="grhead-topic gray02">话题{wc:fun:huati('tiezi')}<span class="gray03"> | </span>回复{wc:fun:huati('hueifu')}</p>
+		<div id="divJoinGroup">
+	        <p id="pJoinGroup" class="grhead-join gray02"> 加入圈子<span id="spJoinGroupNum" class="orange">{wc:fun:qznum()}</span>个<b></b></p>
+	    </div>
+	</div>	
+	{wc:else}
+	<div class="groups-login">
+		<p class="grhead-loginc1 gray02">登录查看您的圈子吧！</p>
+		<p class="grhead-login-reg gray02">没账号？ <span><a href="{WEB_PATH}/member/user/register" target="_blank" class="gray01">简单注册 快捷方便！</a></span></p>
+		<a id="btnLogin" href="{WEB_PATH}/member/user/login" class="button07">立即登录</a>
+	</div>
+	{wc:if:end}
+	</div>
+	<div class="blank10"></div>
+	<div id="divHotTopic" class="groups-shadow clearfix">
+		<div class="R-grtit"><h3>热门话题</h3></div>
+		{wc:getlist sql="select * from `@#_quanzi_tiezi` group by hueiyuan order by id DESC limit 5" return="tiezi"}
+		{wc:loop $tiezi $tz}
+		<div class="R-list Topic-list">
+			<div class="groups-Rimg">
+			<a type="showCard" href="{WEB_PATH}/uname/{wc:fun:idjia($tz['hueiyuan'])}" class="fl-img">				
+			{wc:if userid($tz['hueiyuan'],'img')==null}
+			<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="30" height="30" />
+			{wc:else}
+			<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($tz['hueiyuan'],'img')}" width="30" height="30" border="0"/>
+			{wc:if:end}	
+			</a></div>
+			<div class="groups-Rinfo"><!-- {wc:fun:_strcut($tz['title'],24,"")} -->
+				<p class="groups-ht"><a href="{WEB_PATH}/group/nei/{wc:$tz['id']}" class="gray"> {wc:$tz['title']}</a></p>
+				<p class="groups-c gray02">{wc:fun:_strcut(quanzid($tz['qzid']),10)}<span class="gray03"> | </span>{wc:fun:huifu($tz['id'])}条回复</p>
+			</div>
+		</div>
+		{wc:loop:end}
+		{wc:getlist:end}
+	</div>
+	<div class="blank10"></div>
+	<div class="groups-shadow clearfix">
+		<div class="R-grtit"><h3>活跃成员</h3></div>
+		<div class="Member-list clearfix">
+			<ul id="ulMember">
+			{wc:getlist sql="select * from `@#_quanzi_hueifu` group by hueiyuan order by id DESC limit 12" return="hueifu"}
+			{wc:loop $hueifu $hf}		
+				<li><a type="showCard" href="{WEB_PATH}/uname/{wc:fun:idjia($hf['hueiyuan'])}" class="blue">
+				{wc:if userid($hf['hueiyuan'],'img')==null}
+				<img src="{G_TEMPLATES_STYLE}/images/prmimg.jpg" width="50" height="50" />
+				{wc:else}
+				<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:fun:userid($hf['hueiyuan'],'img')}" width="50" height="50" border="0"/>
+				{wc:if:end}	
+				<i>{wc:fun:userid($hf['hueiyuan'],'username')}</i></a>
+				</li>		
+			{wc:loop:end}
+			{wc:getlist:end}
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,6 @@
+body{ background:url(../image/login_bg.png) repeat-x}
+.login_index{ background:url(../image/login_bg_k.png)}
+.login_yun1{ width:98px; height:61px; position:absolute; top:-35px; left:-15px; background:url(../image/yun.png)}
+.login_yun2{ width:98px; height:61px; position:absolute; top:240px; left:370px; background:url(../image/yun.png)}
+#form_but{ background:url(../image/login_butoon.png)}
+

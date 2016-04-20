@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/js/jquery.Jcrop.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_STYLE}/js/uploadify.css" type="text/css"> 
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.uploadify-3.1.min.js"></script> 
+<link href="{G_TEMPLATES_STYLE}/js/style.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_STYLE}/js/demo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.Validform.min.js"></script>
+<div class="subMenu">
+	{wc:if $title=="编辑个人资料"}<a class="current2 current" href="{WEB_PATH}/member/home/modify"> {wc:else}<a class="current2" href="{WEB_PATH}/member/home/modify">{wc:if:end}个人资料</a>
+	{wc:if $title=="修改头像"}<a class="current" href="{WEB_PATH}/member/home/userphoto"> {wc:else}<a href="{WEB_PATH}/member/home/userphoto">{wc:if:end}修改头像</a>
+	{wc:if $title=="收货地址"}<a class="current" href="{WEB_PATH}/member/home/address"> {wc:else}<a href="{WEB_PATH}/member/home/address">{wc:if:end}收货地址</a>
+	{wc:if $title=="密码修改"}<a class="current" href="{WEB_PATH}/member/home/password"> {wc:else}<a href="{WEB_PATH}/member/home/password">{wc:if:end}密码修改</a>
+</div>

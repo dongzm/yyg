@@ -1,0 +1,48 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-records.css"/>
+<div class="R-content">
+	<div class="member-t"><h2>{wc:fun:_cfg('web_name_two')}记录</h2></div>
+	{wc:php:start}
+        	$jiexiao = get_shop_if_jiexiao($record['shopid']);	
+	
+    {wc:php:end}
+	{wc:if $jiexiao['q_uid']}
+	<div class="yg_record_goods">
+		<a href="{WEB_PATH}/dataserver/{wc:$record['shopid']}" target="_blank" class="fl-img"><img src="{G_UPLOAD_PATH}/{wc:$record['thumb']}"></a>
+		<div class="yg_record_r">
+			<li><span class="orange">(第{wc:$record['shopqishu']}期)</span> <a target="_blank" href="{WEB_PATH}/dataserver/{wc:$record['shopid']}_{wc:$record['shopqishu']}" class="blue">{wc:$jiexiao['title']}</a></li>
+			<li class="gray02">本期商品{wc:fun:_cfg('web_name_two')}已结束 【获得者：<a href="{WEB_PATH}/uname/{wc:fun:idjia($record['uid'])}" target="_blank" class="blue">
+			{wc:fun:get_user_name($jiexiao['q_user'])}</a> 
+			幸运编号：{wc:$jiexiao['q_user_code']} 】</li>
+			<li><a target="_blank" href="{WEB_PATH}/dataserver/{wc:$record['shopid']}" class="bluebut">查看详情</a></li></div>
+	</div>
+	{wc:else}
+	<div class="yg_record_goods">
+		<a href="{WEB_PATH}/goods/{wc:$record['shopid']}" target="_blank" class="fl-img"><img src="{G_UPLOAD_PATH}/{wc:$record['thumb']}"></a>
+		<div class="yg_record_r">
+			<li><span class="orange">(第{wc:$record['shopqishu']}期)</span> <a target="_blank" href="{WEB_PATH}/goods/{wc:$record['shopid']}" class="blue">{wc:$jiexiao['title']}</a></li>
+			<li><a target="_blank" href="{WEB_PATH}/goods/{wc:$record['shopid']}" class="bluebut">查看详情</a></li></div>
+	</div>
+	{wc:if:end}
+	<div class="goods-tit gray02">
+		<p class="fl">本期商品您总共{wc:fun:_cfg('web_name_two')}<span>{wc:$record['gonumber']}</span>人次 拥有<span>{wc:$record['gonumber']}</span>个{wc:fun:_cfg('web_name_two')}码</p><a href="{WEB_PATH}/member/home/userbuylist" class="blue fr">&lt;&lt; 返回列表</a>
+	</div> 
+
+	<div class="list-tab goodsList" id="userbuylist">
+		<ul class="listTitle">
+			<li class="leftTitle">{wc:fun:_cfg('web_name_two')}时间</li>
+			<li>{wc:fun:_cfg('web_name_two')}人次</li>
+			<li class="Code">{wc:fun:_cfg('web_name_two')}码</li></ul>
+		<ul><li class="leftTitle">{wc:fun:microt($record['time'])}</li>
+			<li>{wc:$record['gonumber']}人次</li>
+			<li class="Code">{wc:fun:yunma($record['goucode'])}</li></ul>
+	</div>
+
+	<div class="goods-tit gray02">
+		<a href="{WEB_PATH}/member/home/userbuylist" class="blue fr">&lt;&lt; 返回列表</a></div>
+</div>
+
+</div>
+{wc:templates "index","footer"}

@@ -1,0 +1,30 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-setUp.css"/>
+<script type="text/javascript">
+$(function(){
+	var A=20;
+	var B=function()
+	{if(A==1){
+		location.replace("{WEB_PATH}/member/home")
+	}else{
+		$("#spanNum").html(A);A--}
+	};setInterval(B,1000)
+})
+</script>
+<div class="R-content">
+	<div class="member-t"><h2>邮箱验证</h2></div>
+	<div class="email_verification_ok">
+		<h4>验证成功</h4>
+		<ul>
+			<li><span>验证成功！</span></li>
+			<li>您现在可以使用您的手机号 <span>{wc:$member['mobile']}</span> 或邮箱账号 <span>{wc:$memberx[0]}</span> 进行登录！</li>
+			<li>您还可以：<a href="{WEB_PATH}">开始{wc:fun:_cfg('web_name_two')}</a> <a href="{WEB_PATH}/member/home">去个人中心首页</a></li>
+			<li>如没有任何操作，系统将在 <span id="spanNum"></span> 秒后自动跳转到个人中心首页！</li>
+		</ul>
+	</div>
+</div>
+		
+</div>
+{wc:templates "index","footer"}

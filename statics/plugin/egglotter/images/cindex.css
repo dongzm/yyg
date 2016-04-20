@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* Author:sukunwei*/
+/*css reset*/
+body{color:#535353;background:#fff;font:12px/20px tahoma,\5b8b\4f53;}
+html,body,div,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,p,span,a,img,form,fieldset,label,table,th,td,.btn,.rbtn{margin:0;padding:0;list-style:none}
+img{border:0}
+:focus{outline:0}
+select,textarea,img,fieldset,input{font-family:tahoma,\5b8b\4f53;vertical-align:middle}
+.Red{color:#f00;}
+.wcen{width:100%;margin:0 auto;clear:both; z-index:2}
+.cen{width:990px;margin:0 auto;clear:both; z-index:2}
+.scen{width:988px;margin:0 auto;clear:both; z-index:2}
+.clear{float:none;clear:both;height:0;overflow:hidden}
+a{color:#535353;text-decoration:none;outline:none;font-family:\5b8b\4f53}
+a:hover{color:#F67649}
+.wrapcont {background: url("wrapbj.jpg") no-repeat center 0px;}
+.cont1 {
+	margin: 0px auto; width: 960px; position: relative;
+}
+.bj {
+	overflow: hidden;
+}
+.bj img {
+	float: left;
+}
+.logogame {
+	left: 13px; top: 48px; width: 174px; height: 95px; position: absolute;
+}
+.gamesshow {
+	left: 297px; top: 520px; width: 336px; position: absolute;
+}
+.gamesshow li {
+	width: 72px; margin-right: 12px; float: left; display: inline;
+}
+.gamesshow li p {
+	width: 72px; height: 22px; text-align: center; line-height: 22px;
+}
+.gamesshow li a {
+	color: rgb(255, 255, 255);
+}
+.gamesshow li a:hover {
+	text-decoration: underline;
+}
+.aimg {
+	width: 72px; height: 52px; float: left;
+}
+.download {
+	top: 525px;
+	width: 267px;
+	right: 14px;
+	position: absolute;
+}
+.download a {
+	display: block;
+}
+.full {
+	margin-top: 10px;
+}
+.zhuce {
+	left: 12px; top: 535px; position: absolute;
+}
+.zhuce li {
+	height: 38px; overflow: hidden; vertical-align: top;
+}
+.title {
+	width: 230px; height: 22px; text-align: center; color: red; line-height: 22px; font-weight: bold;
+}
+.title span {
+	
+}
+.write {
+	background: url("zclibj.gif") no-repeat; width: 230px; height: 21px;
+}
+.yzm {
+	background: url("yzminputbj.gif") no-repeat; height: 21px;
+}
+.write label {
+	width: 68px; height: 21px; text-align: right; color: rgb(255, 255, 255); line-height: 21px; float: left;
+}
+.yzm label {
+	float: left;
+}
+.write input {
+	border: currentColor; width: 147px; height: 19px; line-height: 19px; margin-left: 2px; float: left;
+}
+.yzm input {
+	width: 74px; float: left;
+}
+.tishi {
+	width: 160px; height: 16px; color: rgb(255, 0, 0); line-height: 16px; overflow: hidden; margin-left: 70px; display: block;
+}
+.tishiyzm {
+	margin: 0px; width: 50px; line-height: 20px; float: left;
+}
+.notsee {
+	width: 100px; color: rgb(147, 189, 255); line-height: 20px; text-decoration: underline; margin-left: 10px; float: left; display: inline;
+}
+.zcbut {
+	margin: 6px 0px 0px 50px; width: 149px; height: 33px; display: block;
+}
+.lbcont {
+	left: 13px; top: 259px; position: absolute;
+}
+#playtab {
+	left: -13px; top: 7px; width: 480px; height: 208px; overflow: hidden; position: absolute;
+}
+.playol {
+	right: 3px; bottom: 7px; position: absolute; z-index: 2;
+}
+.playol li {
+	background: rgb(255, 255, 255); width: 8px; height: 4px; font-size: 0px; margin-left: 4px; float: left; display: inline;
+}
+.playol .activeol {
+	background: rgb(255, 180, 0);
+}
+.playul {
+	width: 480px; height: 208px; position: absolute; z-index: 1;
+}
+.playul li {
+	left: 0px; top: 0px; filter: alpha(opacity:0); position: absolute; opacity: 0;
+}
+.intogw {
+	left: -14px; top: 0px; position: absolute; z-index: 3;
+}
+#fotter {
+	margin: 0px auto; top: 762px; width: 960px; height: 96px; overflow: hidden; position: absolute;
+}
+#fotter p {
+	margin: 0px auto; width: 880px; text-align: center; color: rgb(24, 88, 131); line-height: 20px; padding-top: 20px;
+}
+#fotter p a {
+	color: rgb(24, 88, 131);
+}

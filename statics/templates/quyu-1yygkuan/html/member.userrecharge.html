@@ -1,0 +1,109 @@
+﻿{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-recharge.css"/>
+<script>
+$(function(){
+	var je=$("#ulMoneyList li");
+	var dx=/\D/;
+	je.click(function(){
+		je.removeClass("selected");
+		je.find("input").removeAttr("checked");
+		var radio=je.index(this);
+			je.eq(radio).find("input").attr('checked','checked');
+			je.eq(radio).addClass("selected");
+		var valx=je.eq(radio).find("input").val();
+		$("#Money").text(valx);
+		$("#hidMoney").val(valx);
+	});
+	var tel=$("#txtOtherMoney").val();
+	$("#txtOtherMoney").keyup(function(){	
+		if(dx.test($("#txtOtherMoney").val())){
+			$("#txtOtherMoney").val(tel);			
+		}else{
+			tel=$("#txtOtherMoney").val();
+		}
+		$("#Money").text(tel);
+		$("#hidMoney").val(tel);
+	}); 
+})
+</script>
+<div class="R-content">
+<div class="member-t"><h2 style="color:#f00">充值卡充值（添加极光客服QQ：10373458 为好友，转发推广说说即可获赠5-20面值的充值卡）</h2></div>
+<br/>
+<div class="charge_money_list" style="border:0;border-bottom:1px solid #e6e7e8; padding-bottom:30px; margin-bottom:50px">
+		<form action="{WEB_PATH}/member/cart/card_addmoney" method="post">
+		<ul style=" line-height:40px;">
+			<li style="margin:20px 0; line-height:40px;">充值卡账号：<input type="text" name="czknum" size="30" maxlength="20" style="height:25px; width:200px;"><br></li>
+			<li style="margin:20px 0; line-height:40px;">充值卡密码：<input type="text" name="password" size="30" maxlength="20" style="height:25px; width:200px;"><br></li>
+			<li><input class="bluebut imm" type="submit" name="card_pay" value="立即充值">
+
+			</ul>
+		</form>
+	</div></div>
+<form id="toPayForm" name="toPayForm" action="{WEB_PATH}/member/cart/addmoney" method="post" target="_blank">
+<div class="R-content">
+	<div class="member-t"><h2>账户充值 -在线支付</h2></div>
+	<div class="select">
+		<b class="gray01">请您选择充值金额</b>
+		<ul id="ulMoneyList">
+			<li class="selected" style="margin-left:0;"><input  type="radio" id="rd10" name="money" value="10" checked="checked"> <label for="rd10">充值 <strong>￥</strong><b>10</b></label></li>
+			<li><input type="radio" name="money" value="50" id="rd50"> <label for="rd50">充值 <strong>￥</strong><b>50</b></label></li>
+			<li><input type="radio" name="money" value="100" id="rd100"> <label for="rd100">充值 <strong>￥</strong><b>100</b></label></li>
+			<li><input type="radio" name="money" value="200" id="rd200"> <label for="rd200">充值 <strong>￥</strong><b>200</b></label></li>
+			<li class="custom"><input type="radio" value="0" name="money" id="rdOther"> <label for="rdOther">其它金额</label><input value="" id="txtOtherMoney" type="text" class="enter" maxlength="7" /></li>
+		</ul>
+	</div>
+	<div class="charge_money_list">
+	<p class="title gray01">请选择支付方式(推荐使用支付宝扫码支付)</p>
+	<p class="leix">支付平台支付：</p>
+		<ul class="payment yeepay_click">		
+          {wc:loop $paylist  $pay}
+			<li>
+				<input checked="checked" type="radio" value="{wc:$pay['pay_id']}" name="account">               
+                <img style="border:1px solid #eee; padding:1px; margin-right:20px;" height="35px" width="100px" src="{G_UPLOAD_PATH}/{wc:$pay['pay_thumb']}">
+                
+            </li>
+           {wc:loop:end}             
+		</ul>
+		<p class="much">应付金额：<span class="yf"><strong>￥</strong><span id="Money">10</span></span></p>
+		<h6>			
+				<input type="hidden" id="hidPayName" name="payName" value="">
+				<input type="hidden" id="hidPayBank" name="payBank" value="0">
+				<input type="hidden" id="hidMoney" name="money" value="10">
+				<input id="submit_ok" class="bluebut imm" type="submit" name="submit" value="立即充值" title="立即充值">
+			</form>
+		</h6>
+		<div id="payAltBox" style="display:none;">
+			<div class="prompt_box">
+				<p class="pic"><em></em>请您在新开的页面上完成支付！</p>
+				<p class="ts">付款完成之前，请不要关闭本窗口！<br>完成付款后跟据您的个人情况完成此操作！</p>
+				<ul>
+					<li><a href="{WEB_PATH}/member/home/userbalance" class="look" title="查看充值记录">查看充值记录 </a></li>
+					<li><a href="javascript:gotoClick();" class="look" id="btnReSelect" title="重选支付方式">重选支付方式</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>  
+</div>
+</div>
+<script>
+$(function(){
+		
+	$("#submit_ok").click(function(){	
+		if(!this.cc){
+			this.cc = 1;		
+			return true;
+		}else{		
+			return false;
+		}		
+		return false;
+	});
+	
+	$(".yeepay_click li>img").click(function(){			
+			$(this).prev().attr("checked",'checked');
+	});
+
+});
+</script>
+{wc:templates "index","footer"}

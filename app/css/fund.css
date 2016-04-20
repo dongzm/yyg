@@ -1,0 +1,198 @@
+@charset "utf-8";
+.fundCon {
+	width:980px;
+	margin:0 auto;
+	background:url(../images/bg_27.gif) repeat;
+	padding-bottom: 23px;
+}
+.fundCon:after {
+	content:"\0020";
+	display:block;
+	height:0;
+	clear:both;
+}
+.fundCon .welfare {
+	background-image:url(../images/welfare.png);
+	display:block;
+}
+.fundCon .fImg img {
+	float:left;
+}
+.fundCon .fInfo {
+	float:left;
+	width:624px;
+	background:#f7ffd9;
+	margin:0 20px 0 27px;
+	display:inline;
+	border-radius:0 0 5px 5px;
+}
+.fundCon .tit1 {
+	background:#478414;
+	width:608px;
+	height:33px;
+	padding:12px 0 0 16px;
+}
+.fundCon .tit1 s {
+	background-position:0 -100px;
+	background-repeat:no-repeat;
+	width:138px;
+	height:21px;
+}
+.fundCon .step {
+	width:587px;
+	padding-bottom:25px;
+	font-family:Arial,"宋体";
+}
+.fundCon .step ul {
+	clear:both;
+	display:inline-block;
+	margin-top:15px;
+	_margin-top:7px;
+}
+.fundCon .step ul li {
+	float:left;
+}
+.fundCon .step ul li.scen {
+	float:left;
+	border-left:#DAF098 1px solid;
+	border-right:#DAF098 1px solid;
+	padding:10px 18px 10px 8px;
+	color:#4e8837;
+	line-height:25px;
+	background:#fff;
+	width:559px;
+}
+.fundCon .step ul li.scen s {
+	background-repeat:no-repeat;
+	height:22px;
+}
+.fundCon .step ul li.scen dl {
+	padding-left:27px;
+	font-size:14px;
+	margin-top:10px;
+}
+.fundCon .step ul li.scen dl p {
+	text-indent:2em;
+}
+.fundCon .step ul li.scen s.s1 {
+	background-position:0 0;
+	width:138px;
+}
+.fundCon .step ul li.scen s.s2 {
+	background-position:0 -25px;
+	width:150px;
+}
+.fundCon .step ul li.scen s.s3 {
+	background-position:0 -49px;
+	width:138px;
+}
+.fundCon .step ul li.scen s.s4 {
+	background-position:0 -73px;
+	width:138px;
+}
+.fundCon .step li.sTop,.fundCon .step li.sBottom {
+	width:587px;
+	height:6px;
+	float:left;
+	display:block;
+}
+.fundCon .step li.sTop {
+	background:url(../images/top_16.gif) no-repeat;
+	overflow:hidden;
+}
+.fundCon .step li.sBottom {
+	background:url(../images/bottom_26.gif) no-repeat;
+}
+.fAccount {
+	float:left;
+	width:272px;
+	border:#478414 2px solid;
+	background:#fff;
+}
+.fAccount .tit2 {
+	background:#478414;
+	width:259px;
+	height:33px;
+	padding:10px 0 0 13px;
+}
+.fAccount .tit2 s {
+	background-position:0 -127px;
+	background-repeat:no-repeat;
+	width:108px;
+	height:21px;
+}
+.value {
+	background:#f7ffd9;
+	font-size:12px;
+	color:#478414;
+	padding:10px 15px;
+}
+.value dl {
+	clear:both;
+	color:#8bba64;
+	margin:5px 0;
+}
+.value p {
+	background:url(../images/welfare_11.gif) no-repeat;
+	width:242px;
+	height:48px;
+	text-align:center;
+	line-height:48px;
+}
+.value p b {
+	color:#f40;
+	font-size:28px;
+	font-family:Arial;
+	margin-right:10px;
+}
+.value p span {
+	position:relative;
+	top:-5px;
+}
+.fCon {
+	height:617px;
+	overflow:hidden;
+}
+.fCon .funding {
+	margin:7px;
+	display:block;
+}
+.fCon .funding ul {
+	clear:both;
+	border-bottom:#F5F6F4 1px solid;
+	padding:9px 0;
+	*display:inline-block;
+	overflow:hidden;
+}
+.fCon .funding ul:after {
+	content:"\0020";
+	display:block;
+	height:0;
+	clear:both;
+}
+.fCon .funding li {
+	float:left;
+	font-size:12px;
+	color:#999;
+	margin-left:7px;
+	display:inline;
+}
+.fCon .funding li img {
+	width:34px;
+	height:34px;
+}
+.fCon .funding li a {
+	display:block;
+	color:#2af;
+}
+.fCon .funding li a:hover {
+	text-decoration:underline;
+}
+.fAccount .btn {
+	margin:10px auto;
+	text-align:center;
+}
+.fAccount .btn a {
+	width:243px;
+	margin:0 auto;
+}

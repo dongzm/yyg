@@ -1,0 +1,73 @@
+{wc:templates "index","header"}
+<div class="layout980 clearfix">
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-home.css"/>
+{wc:templates "member","left"}
+<div class="center">
+	<div class="per-info">
+		<ul>
+			<li class="info-mane gray02">
+				<b class="gray01">
+				{wc:if $member['username']!=null}
+				{wc:$member['username']}
+				{wc:elseif $member['mobile']!=null}
+				{wc:$member['mobile']}
+				{wc:else}
+				{wc:$member['email']}
+				{wc:if:end}
+				</b>
+				{wc:if $member['username']!=null}
+				(
+				{wc:if $member['mobile']!=null}
+				{wc:$member['mobile']}
+				{wc:else}
+				{wc:$member['email']}
+				{wc:if:end}
+				)
+				{wc:if:end}
+				<br>
+				<span><a href="{WEB_PATH}/uname/{wc:fun:idjia($member['uid'])}" target="_blank" class="blue"><s></s>{WEB_PATH}/uname/{wc:fun:idjia($member['uid'])}</a></span>
+			</li>
+			<li class="account-money">
+				<em class = "gray02">经验值：{wc:$member['jingyan']}</em> 
+				<span class="class-icon0{wc:$dengji_1['groupid']} gray01"><s></s>{wc:$dengji_1['name']}</span>
+				{wc:if $dengji_2}
+					<span class = "gray02">（还差{wc:$dengji_x}经验值升级到{wc:$dengji_2['name']}）</span>
+				{wc:else}
+					<span class = "gray02">（还差{wc:$dengji_x}经验值升级到最高等级）</span>
+				{wc:if:end}
+			</li>
+			<li class="account-money">
+				<em class="gray02">帐户余额：</em>
+				<span class="money-red"><s></s>{wc:fun:uidcookie('money')}</span>&nbsp;&nbsp;
+				<a href="{WEB_PATH}/member/home/userrecharge" title="充值" class="blue">充值</a>
+			</li>
+		</ul>		
+	</div>
+</div>
+<!--center_center_end-->
+<div class="right">				
+	<div class="groups-shadow clearfix">
+		<div class="R-grtit">
+			<h3>圈子热门话题</h3>
+		</div>
+		<ul class="R-list">
+			{wc:loop $quanzi $tm}
+			<li>
+				<p class="groups-t"><a href="{WEB_PATH}/group/nei/{wc:$tm['id']}" target="_blank" class="gray">{wc:$tm['title']}</a></p>
+				<p class="groups-c gray02">{wc:fun:qztitle($tm['qzid'])}<span class="gray03"> | </span>{wc:fun:tiezi($tm['id'])}条回复</p>
+			</li>
+			{wc:loop:end}
+		</ul>
+	</div> 
+	<p class="r-line"></p>
+	<!-- <div class="gg-content">
+		<div class="R-grtit"><h3>公告栏</h3></div>
+		<ul class="gg-list">	
+			<li><span class="point"></span><span class="info"><a href="http://group.1yyg.com/Topic-621.html" target="_blank" class="gray" title="关于“幸运闪购码”计算结果错误的公告">关于“幸运闪购码”计算结果错误的公告</a></span></li>
+		</ul>
+	</div> -->
+</div>
+<!--center_rjght_end-->
+
+</div>
+{wc:templates "index","footer"}

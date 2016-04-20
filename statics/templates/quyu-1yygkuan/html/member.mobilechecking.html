@@ -1,0 +1,31 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/layout-setUp.css"/>
+<link href="{G_TEMPLATES_STYLE}/js/style.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_STYLE}/js/demo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.Validform.min.js"></script>
+<script type="text/javascript">
+$(function(){		
+	var demo=$(".tel_verification").Validform({
+		tiptype:3,		
+	});
+})
+</script>
+<div class="R-content">
+	<div class="member-t"><h2>手机验证</h2><a href="javascript:history.go(-1);" class="blue">&lt;&lt; 返回</a></div>
+	<div class="tel_verification">
+		<div class="prompt orange">请完成手机验证，验证手机不仅能加强账户安全，快速找回密码，还会在您成功{wc:fun:_cfg('web_name_two')}到商品后及时通知您！<em></em></div>
+		<form method="post" action="{wc:WEB_PATH}/member/home/mobilesuccess">
+		<div class="text_tel" id="divSend" style="display: block;">
+			<span>第一步输入手机号码：</span>
+			<input  datatype="m" ajaxurl="{wc:WEB_PATH}/member/home/mailchackajax" nullmsg="不能为空" errormsg="您输入的手机号码有误" name="mobile" type="text" class="tel" maxlength="11">
+			<input type="submit" name="submit" class="orangebut" value="确认手机号码">
+			<div class="Validform_checktip"></div>
+		</div>
+		</form>		
+	</div>
+</div>
+		
+</div>
+{wc:templates "index","footer"}

@@ -1,0 +1,33 @@
+{wc:templates "index","header"}
+<div class="groups-stripes"></div>
+<div class="layout980">
+	<div class="groups-left">
+		<h2 class="gr-title"><a><b>{wc:fun:_cfg('web_name_two')}圈子</b></a></h2>
+		<div class="gr-guild">
+			<b>在这里可以做什么?</b>
+			<p class="gray01">在这里你可以找到与自己兴致相投的{wc:fun:_cfg('web_name_two')}网友，随意申请加入任何你感兴趣的圈子，了解{wc:fun:_cfg('web_name_two')}所发生的“重大事件”，参与到他们的行列之中，一起探论{wc:fun:_cfg('web_name_two')}神奇，看看他们是如何{wc:fun:_cfg('web_name_two')}的，一起分享交流探讨！来！一起加入他们的行列中吧！</p>
+		</div>
+		<div class="groups-list clearfix">
+			<ul>
+			{wc:loop $quanzi $v}
+				<li>
+					<div class="groups-img"><a href="{WEB_PATH}/group/show/{wc:$v['id']}" class="fl-img">
+					{wc:if $v['img']==null}
+					<img src="{G_UPLOAD_PATH}/quanzi/prmimg.jpg" title="{wc:$v['title']}" border="0" alt="">
+					{wc:else}
+					<img src="{G_UPLOAD_PATH}/{wc:$v['img']}" title="{wc:$v['title']}" border="0" alt="">
+					{wc:if:end}
+					</a></div>
+					<div class="groups-info">
+						<p class="groups-name"><a href="{WEB_PATH}/group/show/{wc:$v['id']}" title="{wc:$v['title']}" class="blue">{wc:$v['title']}</a></p>
+						<p class="groups-class gray02">成员：{wc:$v['chengyuan']}&nbsp;&nbsp;&nbsp;&nbsp;话题：{wc:$v['tiezi']}</p>
+						<p class="groups-intro gray02">{wc:$v['jianjie']}</p>
+					</div>
+				</li>
+			{wc:loop:end}					
+			</ul>
+		</div>		
+	</div>
+	{wc:templates "group","right"}
+</div>
+ {wc:templates "index","footer"}
